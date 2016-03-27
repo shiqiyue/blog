@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -13,7 +14,10 @@ import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.event.LoggingEventListener;
+import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -38,6 +42,9 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Autowired(required = false)
 	private List<Converter<?, ?>> converters;
+	
+	@Autowired
+	private LocalValidatorFactoryBean localValidatorFactoryBean;
 
 	@Override
 	protected String getDatabaseName() {
@@ -61,6 +68,16 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 			converters = Collections.emptyList();
 		}
 		return new CustomConversions(converters);
+	}
+	
+	@Bean
+	public LoggingEventListener loggingEventListener() {
+		return new LoggingEventListener();
+	}
+	
+	@Bean
+	public ValidatingMongoEventListener validatingMongoEventListener(){
+		return new ValidatingMongoEventListener(localValidatorFactoryBean);
 	}
 
 }

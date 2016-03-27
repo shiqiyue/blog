@@ -17,19 +17,23 @@ package cn.wuwenyao.blog.site.entity.mongo.base;
 
 import java.math.BigInteger;
 
+import javax.persistence.EntityListeners;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.mongodb.core.mapping.event.LoggingEventListener;
+import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 
 /**
  * Base class for document classes.
  * 
  * @author Oliver Gierke
  */
+@EntityListeners({ ValidatingMongoEventListener.class, LoggingEventListener.class })
 public class AbstractDocument {
 
 	@Id
 	private BigInteger id;
-
-	
 
 	/**
 	 * Returns the identifier of the document.
@@ -70,6 +74,5 @@ public class AbstractDocument {
 	public int hashCode() {
 		return id == null ? 0 : id.hashCode();
 	}
-
 
 }

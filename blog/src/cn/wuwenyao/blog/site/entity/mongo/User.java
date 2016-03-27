@@ -1,5 +1,10 @@
 package cn.wuwenyao.blog.site.entity.mongo;
 
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import cn.wuwenyao.blog.site.entity.mongo.base.AbstractDocument;
@@ -13,7 +18,11 @@ public class User extends AbstractDocument {
 
 	private String salt;
 
+	@NotNull
 	private UserInfo userInfo;
+	
+	@DBRef
+	private List<Blog> blogs;
 
 	public String getUsername() {
 		return username;
@@ -45,6 +54,14 @@ public class User extends AbstractDocument {
 
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
+	}
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
 	}
 
 }

@@ -12,9 +12,11 @@ import com.google.common.collect.Lists;
 import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
 import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
 import cn.wuwenyao.blog.site.entity.mongo.Admin;
+import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.User;
 import cn.wuwenyao.blog.site.enums.Permission;
 import cn.wuwenyao.blog.site.service.AdminService;
+import cn.wuwenyao.blog.site.service.BlogService;
 import cn.wuwenyao.blog.site.service.UserService;
 
 @Controller
@@ -27,6 +29,9 @@ public class TestController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private BlogService blogService;
+	
 	
 	@RequestMapping("user/add")
 	@ResponseBody
@@ -34,6 +39,7 @@ public class TestController {
 		RepBaseDTO repDTO = new RepBaseDTO();
 		User user = new User();
 		user.setUsername("dasdad");
+		
 		userService.addUser(user);
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加用户成功");
@@ -55,4 +61,8 @@ public class TestController {
 		repDTO.setMes("添加管理员成功");
 		return repDTO;
 	}
+	
+	
+	
+	
 }

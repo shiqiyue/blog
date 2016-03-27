@@ -1,5 +1,7 @@
 package cn.wuwenyao.blog.site.entity.mongo;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,8 @@ public class Blog extends AbstractAuditDocument {
 	private String title;
 	private String context;
 	private String about;
+	
+	
 
 	public String getContext() {
 		return context;
