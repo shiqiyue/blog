@@ -16,15 +16,8 @@
 package cn.wuwenyao.blog.site.entity.mongo.base;
 
 import java.math.BigInteger;
-import java.util.Date;
 
-import javax.persistence.EntityListeners;
-
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.Version;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * Base class for document classes.

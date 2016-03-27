@@ -14,12 +14,9 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
-
 import cn.wuwenyao.blog.config.RestContextConfiguration;
 import cn.wuwenyao.blog.config.RootContextConfiguration;
 import cn.wuwenyao.blog.config.WebContextConfiguration;
-import cn.wuwenyao.blog.config.property.PropertyConfiguration;
 
 /***
  * web应用程序初始化，相当于web.xml
