@@ -15,9 +15,9 @@ import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
 import cn.wuwenyao.blog.site.entity.mongo.Admin;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
+import cn.wuwenyao.blog.site.entity.mongo.Permission;
 import cn.wuwenyao.blog.site.entity.mongo.User;
 import cn.wuwenyao.blog.site.entity.mongo.UserInfo;
-import cn.wuwenyao.blog.site.enums.Permission;
 import cn.wuwenyao.blog.site.service.AdminService;
 import cn.wuwenyao.blog.site.service.BlogService;
 import cn.wuwenyao.blog.site.service.BloggerService;
@@ -66,16 +66,26 @@ public class TestController {
 	public RepBaseDTO addAdmin() {
 		RepBaseDTO repDTO = new RepBaseDTO();
 		Admin admin = new Admin();
+		UserInfo userInfo = new UserInfo();
+		userInfo.setName("dasdsad");
 		admin.setUsername("www");
 		admin.setPassword("dasd");
+		admin.setUserInfo(userInfo);
 		List<Permission> permissons = Lists.newArrayList();
-		permissons.add(Permission.BLOG);
-		permissons.add(Permission.SYSINFO);
+		permissons.add(Permission.BLOG_MANAGE);
+		permissons.add(Permission.SYSINFO_MANAGE);
 		admin.setPermissions(permissons);
 		adminService.addAdmin(admin);
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加管理员成功");
 		return repDTO;
+	}
+	
+	@RequestMapping("admin/find")
+	@ResponseBody
+	public List<Admin> findAllAdmin() {
+		
+		return adminService.findAll();
 	}
 
 	@RequestMapping("blog/add")

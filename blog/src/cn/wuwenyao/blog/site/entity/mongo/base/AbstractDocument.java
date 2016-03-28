@@ -29,7 +29,7 @@ import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventL
  * 
  * @author Oliver Gierke
  */
-@EntityListeners({ ValidatingMongoEventListener.class, LoggingEventListener.class })
+@EntityListeners({ ValidatingMongoEventListener.class, LoggingEventListener.class})
 public class AbstractDocument {
 
 	@Id

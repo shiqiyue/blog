@@ -17,18 +17,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.event.LoggingEventListener;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.stereotype.Component;
 import org.springframework.util.SystemPropertyUtils;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
+import cn.wuwenyao.blog.site.converter.PermissionStringConverter;
+
 @Configuration
 @EnableMongoRepositories(basePackages = "${package.mongo.dao}")
 @EnableMongoAuditing(dateTimeProviderRef = "dateTimeProvider")
 @ComponentScan(basePackages = { "${package.mongo.entity}",
 		"${package.convertor}" }, useDefaultFilters = false, includeFilters = {
-				@ComponentScan.Filter({ Document.class, cn.wuwenyao.blog.anontation.Converter.class }) })
+				@ComponentScan.Filter({ Document.class, Component.class }) })
 public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Value("${mongo.dbname}")
@@ -43,7 +46,7 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Autowired(required = false)
 	private List<Converter<?, ?>> converters;
-	
+
 	@Autowired
 	private LocalValidatorFactoryBean localValidatorFactoryBean;
 
@@ -65,19 +68,19 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 	 */
 	@Override
 	public CustomConversions customConversions() {
-		if (converters == null){
+		if (converters == null) {
 			converters = Collections.emptyList();
 		}
 		return new CustomConversions(converters);
 	}
-	
+
 	@Bean
 	public LoggingEventListener loggingEventListener() {
 		return new LoggingEventListener();
 	}
-	
+
 	@Bean
-	public ValidatingMongoEventListener validatingMongoEventListener(){
+	public ValidatingMongoEventListener validatingMongoEventListener() {
 		return new ValidatingMongoEventListener(localValidatorFactoryBean);
 	}
 
