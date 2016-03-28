@@ -2,13 +2,17 @@ package cn.wuwenyao.blog.site.entity.mongo;
 
 import java.util.Collection;
 
-import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+
+import com.google.common.collect.Lists;
 
 import cn.wuwenyao.blog.site.entity.mongo.base.AbstractDocument;
 import cn.wuwenyao.blog.site.validator.NotBlank;
@@ -24,6 +28,7 @@ public class User extends AbstractDocument implements Authentication, Cloneable{
 	 * 
 	 */
 	private static final long serialVersionUID = 8794003268373923049L;
+	private static final Logger log = LoggerFactory.getLogger(User.class);
 
 	@Indexed(unique = true)
 	@NotBlank
@@ -36,6 +41,9 @@ public class User extends AbstractDocument implements Authentication, Cloneable{
 	@NotNull
 	@Valid
 	private UserInfo userInfo;
+	
+	@Transient
+	private boolean isAuthenticated;
 
 	
 
@@ -66,51 +74,46 @@ public class User extends AbstractDocument implements Authentication, Cloneable{
 	}
 
 	@Override
-	@Transient
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("auth getName");
+		return username;
 	}
 
 	@Override
-	@Transient
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("auth getAuthorities");
+		return Lists.newArrayList();
 	}
 
 	@Override
-	@Transient
 	public Object getCredentials() {
-		// TODO Auto-generated method stub
-		return null;
+
+		log.info("auth getCredentials");
+		return password;
 	}
 
 	@Override
-	@Transient
 	public Object getDetails() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("auth getDetails");
+		return username;
 	}
 
 	@Override
-	@Transient
 	public Object getPrincipal() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("auth getPrincipal");
+		return username;
 	}
 
 	@Override
-	@Transient
 	public boolean isAuthenticated() {
-		// TODO Auto-generated method stub
-		return false;
+		log.info("auth isAuthenticated");
+		return isAuthenticated;
 	}
 
 	@Override
-	@Transient
 	public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+		log.info("auth setAuthenticated");
+		this.isAuthenticated = isAuthenticated;
 		
 	}
 

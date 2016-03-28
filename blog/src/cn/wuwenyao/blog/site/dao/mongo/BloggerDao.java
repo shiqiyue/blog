@@ -10,4 +10,5 @@ import cn.wuwenyao.blog.site.entity.mongo.Blogger;
  */
 public interface BloggerDao extends BaseDao<Blogger>{
 
+	public Blogger findByUsername(String username);
 }

@@ -1,5 +1,6 @@
 package cn.wuwenyao.blog.site.entity.mongo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,12 @@ import cn.wuwenyao.blog.site.validator.NotBlank;
  * @author 文尧
  *
  */
-public class UserInfo {
+public class UserInfo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7117032439195784025L;
 
 	@NotBlank
 	private String name;

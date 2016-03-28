@@ -30,4 +30,9 @@ public class AdminService {
 	public List<Admin> findAll(){
 		return adminDao.findAll();
 	}
+	
+	public List<Admin> findByAttribute(String key, Object value){
+		return adminDao.findByAttribute(key, value);
+	}
+
 }
