@@ -3,6 +3,8 @@ package cn.wuwenyao.blog.site.entity.mongo;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.wuwenyao.blog.site.validator.NotBlank;
+
 /***
  * 用户信息
  * @author 文尧
@@ -10,6 +12,7 @@ import java.util.Map;
  */
 public class UserInfo {
 
+	@NotBlank
 	private String name;
 
 	private Map<String, Object> attributes = new HashMap<String, Object>();

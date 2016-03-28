@@ -22,20 +22,20 @@ public class BCryptPasswordAlgo implements IPasswordAlgo {
 	private BCryptPasswordAlgo() {
 	}
 
-	public BCryptPasswordAlgo getInstance() {
+	public static BCryptPasswordAlgo getInstance() {
 		return instance;
 	}
 
 	@Override
-	public boolean checkPassword(String plain, byte[] hashed) {
-		return BCrypt.checkpw(plain, new String(hashed, StandardCharsets.UTF_8));
+	public boolean checkPassword(String plain, String hashed) {
+		return BCrypt.checkpw(plain, hashed);
 	}
 
 	@Override
-	public byte[] encrptPassword(String password) {
+	public String encrptPassword(String password) {
 		if (password != null && password.length() > 0) {
 			String salt = BCrypt.gensalt(HASHING_ROUNDS, RANDOM);
-			return BCrypt.hashpw(password, salt).getBytes();
+			return BCrypt.hashpw(password, salt);
 		}
 		return null;
 	}

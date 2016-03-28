@@ -1,10 +1,10 @@
-package cn.wuwenyao.blog.rest.controller;
+package cn.wuwenyao.blog.site.rest.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.wuwenyao.blog.rest.controller.dto.rep.RepBaseDTO;
-import cn.wuwenyao.blog.rest.controller.dto.rep.ResultCode;
+import cn.wuwenyao.blog.site.rest.controller.dto.rep.RepBaseDTO;
+import cn.wuwenyao.blog.site.rest.controller.dto.rep.ResultCode;
 
 @RestController
 @RequestMapping("rest/main")

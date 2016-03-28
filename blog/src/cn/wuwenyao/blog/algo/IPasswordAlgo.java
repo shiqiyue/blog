@@ -6,7 +6,7 @@ public interface IPasswordAlgo {
 	 * @param password
 	 * @return
 	 */
-	public byte[] encrptPassword(String password);
+	public String encrptPassword(String password);
 	
 	/***
 	 * 检测密码是否正确
@@ -14,5 +14,5 @@ public interface IPasswordAlgo {
 	 * @param hashed 加密过的密码
 	 * @return
 	 */
-	public boolean checkPassword(String plain, byte[] hashed);
+	public boolean checkPassword(String plain, String hashed);
 }
