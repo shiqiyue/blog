@@ -2,6 +2,8 @@ package cn.wuwenyao.blog.site.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,6 @@ import cn.wuwenyao.blog.algo.BCryptPasswordAlgo;
 import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
 import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
 import cn.wuwenyao.blog.site.entity.mongo.Admin;
-import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 import cn.wuwenyao.blog.site.entity.mongo.Permission;
 import cn.wuwenyao.blog.site.entity.mongo.User;
@@ -27,6 +28,8 @@ import cn.wuwenyao.blog.site.service.UserService;
 @RequestMapping("test")
 public class TestController {
 
+	private static Logger log = LoggerFactory.getLogger(TestController.class);
+	
 	@Autowired
 	private AdminService adminService;
 
@@ -45,10 +48,10 @@ public class TestController {
 		RepBaseDTO repDTO = new RepBaseDTO();
 		User user = new User();
 		user.setUsername("dsadasdafdf");
+		user.setPassword("dasdasd");
 		UserInfo userInfo = new UserInfo();
 		userInfo.setName("wuwendfdfyao");
 		user.setUserInfo(userInfo);
-		List<Blog> blogs = blogService.findAll();
 		userService.addUser(user);
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加用户成功");
@@ -58,6 +61,7 @@ public class TestController {
 	@RequestMapping("user/find")
 	@ResponseBody
 	public User findUser() {
+		log.info("user find : {}", userService.findUserByKeyAndValue("username", "dsadasdafdf").get(0));
 		return userService.findUserByKeyAndValue("username", "dsadasdafdf").get(0);
 	}
 
@@ -88,19 +92,7 @@ public class TestController {
 		return adminService.findAll();
 	}
 
-	@RequestMapping("blog/add")
-	@ResponseBody
-	public RepBaseDTO addBlog() {
-		RepBaseDTO repDTO = new RepBaseDTO();
-		List<User> user = userService.findUserByKeyAndValue("username", "dasdad");
-		Blog blog = new Blog();
-		blog.setTitle("dad");
-		blog.setUser(user.get(0));
-		blogService.addBlog(blog);
-		repDTO.setCode(ResultCode.SUCCESS);
-		repDTO.setMes("添加博客成功");
-		return repDTO;
-	}
+	
 
 	@RequestMapping("blogger/add")
 	@ResponseBody

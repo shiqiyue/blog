@@ -22,7 +22,7 @@ public class Blog extends AbstractAuditDocument {
 	 */
 	private static final long serialVersionUID = -3147690484901739576L;
 	@DBRef
-	private User user;
+	private Blogger blogger;
 	@DBRef
 	private List<LeaveMessage> leaveMessages;
 
@@ -57,13 +57,7 @@ public class Blog extends AbstractAuditDocument {
 		this.title = title;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 	public List<LeaveMessage> getLeaveMessages() {
 		return leaveMessages;
@@ -71,6 +65,14 @@ public class Blog extends AbstractAuditDocument {
 
 	public void setLeaveMessages(List<LeaveMessage> leaveMessages) {
 		this.leaveMessages = leaveMessages;
+	}
+
+	public Blogger getBlogger() {
+		return blogger;
+	}
+
+	public void setBlogger(Blogger blogger) {
+		this.blogger = blogger;
 	}
 
 }

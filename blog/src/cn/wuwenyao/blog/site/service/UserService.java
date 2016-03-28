@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import cn.wuwenyao.blog.algo.BCryptPasswordAlgo;
 import cn.wuwenyao.blog.site.dao.mongo.UserDao;
 import cn.wuwenyao.blog.site.entity.mongo.User;
 
@@ -21,11 +22,12 @@ public class UserService {
 
 	public void addUser(User user) {
 		log.debug("save user");
+		user.setPassword(BCryptPasswordAlgo.getInstance().encrptPassword(user.getPassword()));
 		user = userDao.save(user);
 		Assert.notNull(user, "user save fail");
 	}
-	
-	public List<User> findUserByKeyAndValue(String key, Object value){
+
+	public List<User> findUserByKeyAndValue(String key, Object value) {
 		return userDao.findByAttribute(key, value);
 	}
 }

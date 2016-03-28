@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import cn.wuwenyao.blog.algo.BCryptPasswordAlgo;
 import cn.wuwenyao.blog.site.dao.mongo.AdminDao;
 import cn.wuwenyao.blog.site.entity.mongo.Admin;
 
@@ -21,6 +22,7 @@ public class AdminService {
 
 	public void addAdmin(Admin admin) {
 		log.debug("save admin");
+		admin.setPassword(BCryptPasswordAlgo.getInstance().encrptPassword(admin.getPassword()));
 		admin = adminDao.save(admin);
 		Assert.notNull(admin, "admin save fail");
 	}

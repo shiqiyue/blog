@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.google.common.collect.Lists;
+
 /***
  * 博客使用者，博主
  * 
@@ -26,5 +28,12 @@ public class Blogger extends User {
 
 	public void setBlogs(List<Blog> blogs) {
 		this.blogs = blogs;
+	}
+	
+	public void addBLog(Blog blog){
+		if (blogs == null){
+			blogs = Lists.newArrayList();
+		}
+		blogs.add(blog);
 	}
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import cn.wuwenyao.blog.site.dao.mongo.BlogDao;
+import cn.wuwenyao.blog.site.dao.mongo.BloggerDao;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
+import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 
 @Service
 public class BlogService {
@@ -17,13 +19,24 @@ public class BlogService {
 
 	@Autowired
 	private BlogDao blogDao;
-	
-	public void addBlog(Blog blog){
+	@Autowired
+	private BloggerDao bloggerDao;
+
+	public void addBlog(Blog blog) {
+		blog = blogDao.save(blog);
+		Assert.notNull(blog);
+		Blogger blogger = blog.getBlogger();
+		blogger.addBLog(blog);
+		blogger = bloggerDao.save(blogger);
+		Assert.notNull(blogger);
+	}
+
+	public void updateBlog(Blog blog) {
 		blog = blogDao.save(blog);
 		Assert.notNull(blog);
 	}
-	
-	public List<Blog> findAll(){
+
+	public List<Blog> findAll() {
 		return blogDao.findAll();
 	}
 }
