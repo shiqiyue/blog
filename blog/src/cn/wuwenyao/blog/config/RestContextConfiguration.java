@@ -40,7 +40,7 @@ import cn.wuwenyao.blog.anontation.RestControllerAdvice;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "${package.site}", useDefaultFilters = false, includeFilters = @ComponentScan.Filter({
+@ComponentScan(basePackages = "${package.rest}", useDefaultFilters = false, includeFilters = @ComponentScan.Filter({
 		RestController.class, RestControllerAdvice.class }))
 @EnableSpringDataWebSupport
 public class RestContextConfiguration extends WebMvcConfigurerAdapter {

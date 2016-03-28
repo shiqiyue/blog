@@ -31,7 +31,7 @@ public class WebExceptionHandler {
 	@ResponseBody
 	public String runtimeExceptionHandler(WebRequest request, RuntimeException e) {
 		if (AjaxUtils.isAjaxRequest(request) || AjaxUtils.isAjaxUploadRequest(request)) {
-			return "ajax ConstraintViolationException";
+			return "ajax RuntimeException";
 		}
 		log.error("error", e);
 		return "RuntimeException";

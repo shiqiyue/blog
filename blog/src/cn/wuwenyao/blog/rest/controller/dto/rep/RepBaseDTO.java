@@ -1,4 +1,4 @@
-package cn.wuwenyao.blog.site.rest.controller.dto.rep;
+package cn.wuwenyao.blog.rest.controller.dto.rep;
 
 public class RepBaseDTO {
 
