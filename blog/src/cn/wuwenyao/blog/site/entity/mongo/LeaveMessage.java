@@ -1,9 +1,12 @@
 package cn.wuwenyao.blog.site.entity.mongo;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import cn.wuwenyao.blog.site.entity.mongo.base.AbstractAuditDocument;
+import cn.wuwenyao.blog.site.validator.NotBlank;
 
 /***
  * 留言
@@ -16,18 +19,23 @@ public class LeaveMessage extends AbstractAuditDocument {
 
 	/** 属于哪个博客 */
 	@DBRef
+	@NotNull
 	private Blog blog;
-
-	/** 留言内容 */
-	private String message;
-
+	
 	/** 留言用户 */
 	@DBRef
+	@NotNull
 	private User user;
 
 	/** 回复哪条留言 */
 	@DBRef
 	private LeaveMessage replyTo;
+
+	/** 留言内容 */
+	@NotBlank
+	private String message;
+
+	
 
 	public Blog getBlog() {
 		return blog;

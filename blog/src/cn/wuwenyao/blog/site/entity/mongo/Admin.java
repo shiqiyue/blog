@@ -6,6 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import cn.wuwenyao.blog.site.enums.Permission;
 
+/***
+ * 管理员
+ * @author 文尧
+ *
+ */
 @Document
 public class Admin extends User {
 

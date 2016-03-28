@@ -20,13 +20,5 @@ public class AdminBlogController {
 		return "admin/blog/main";
 	}
 	
-	@RequestMapping("add")
-	@ResponseBody
-	public boolean add(){
-		Blog blog = new Blog();
-		blog.setAbout("dasdasd");
-		blog.setContext("dsadas");
-		blog.setTitle("dsadasd");
-		return blogService.addBlog(blog);
-	}
+	
 }

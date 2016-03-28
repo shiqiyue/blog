@@ -14,6 +14,7 @@ import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
 import cn.wuwenyao.blog.site.entity.mongo.Admin;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.User;
+import cn.wuwenyao.blog.site.entity.mongo.UserInfo;
 import cn.wuwenyao.blog.site.enums.Permission;
 import cn.wuwenyao.blog.site.service.AdminService;
 import cn.wuwenyao.blog.site.service.BlogService;
@@ -38,12 +39,22 @@ public class TestController {
 	public RepBaseDTO addUser(){
 		RepBaseDTO repDTO = new RepBaseDTO();
 		User user = new User();
-		user.setUsername("dasdad");
-		
+		user.setUsername("dsadasdafdf");
+		UserInfo userInfo = new UserInfo();
+		userInfo.setName("wuwendfdfyao");
+		user.setUserInfo(userInfo);
+		List<Blog> blogs = blogService.findAll();
+		user.setBlogs(blogs);
 		userService.addUser(user);
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加用户成功");
 		return repDTO;
+	}
+	
+	@RequestMapping("user/find")
+	@ResponseBody
+	public User findUser(){
+		return userService.findUserByKeyAndValue("username", "dsadasdafdf").get(0);
 	}
 	
 	@RequestMapping("admin/add")
@@ -51,6 +62,7 @@ public class TestController {
 	public RepBaseDTO addAdmin(){
 		RepBaseDTO repDTO = new RepBaseDTO();
 		Admin admin = new Admin();
+		admin.setUsername("www");
 		admin.setPassword("dasd");
 		List<Permission> permissons = Lists.newArrayList();
 		permissons.add(Permission.BLOG);
@@ -62,7 +74,19 @@ public class TestController {
 		return repDTO;
 	}
 	
-	
+	@RequestMapping("blog/add")
+	@ResponseBody
+	public RepBaseDTO addBlog(){
+		RepBaseDTO repDTO = new RepBaseDTO();
+		List<User> user = userService.findUserByKeyAndValue("username", "dasdad");
+		Blog blog = new Blog();
+		blog.setTitle("dad");
+		blog.setUser(user.get(0));
+		blogService.addBlog(blog);
+		repDTO.setCode(ResultCode.SUCCESS);
+		repDTO.setMes("添加博客成功");
+		return repDTO;
+	}
 	
 	
 }

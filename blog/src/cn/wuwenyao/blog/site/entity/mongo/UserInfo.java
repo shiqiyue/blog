@@ -3,6 +3,11 @@ package cn.wuwenyao.blog.site.entity.mongo;
 import java.util.HashMap;
 import java.util.Map;
 
+/***
+ * 用户信息
+ * @author 文尧
+ *
+ */
 public class UserInfo {
 
 	private String name;

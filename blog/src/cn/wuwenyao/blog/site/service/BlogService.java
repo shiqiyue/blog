@@ -1,5 +1,7 @@
 package cn.wuwenyao.blog.site.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,12 @@ public class BlogService {
 	@Autowired
 	private BlogDao blogDao;
 	
-	public boolean addBlog(Blog blog){
+	public void addBlog(Blog blog){
 		blog = blogDao.save(blog);
 		Assert.notNull(blog);
-		return true;
+	}
+	
+	public List<Blog> findAll(){
+		return blogDao.findAll();
 	}
 }

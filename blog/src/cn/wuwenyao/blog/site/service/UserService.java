@@ -1,5 +1,7 @@
 package cn.wuwenyao.blog.site.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +23,9 @@ public class UserService {
 		log.debug("save user");
 		user = userDao.save(user);
 		Assert.notNull(user, "user save fail");
+	}
+	
+	public List<User> findUserByKeyAndValue(String key, Object value){
+		return userDao.findByAttribute(key, value);
 	}
 }
