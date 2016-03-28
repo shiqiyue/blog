@@ -18,13 +18,10 @@ import org.springframework.data.mongodb.core.mapping.event.LoggingEventListener;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Component;
-import org.springframework.util.SystemPropertyUtils;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-
-import cn.wuwenyao.blog.site.converter.PermissionStringConverter;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "${package.mongo.dao}")

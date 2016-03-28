@@ -17,6 +17,11 @@ import cn.wuwenyao.blog.site.validator.NotBlank;
 @Document
 public class LeaveMessage extends AbstractAuditDocument {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5174633727357783344L;
+
 	/** 属于哪个博客 */
 	@DBRef
 	@NotNull

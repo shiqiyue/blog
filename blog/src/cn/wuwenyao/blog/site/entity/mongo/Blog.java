@@ -10,12 +10,17 @@ import cn.wuwenyao.blog.site.validator.NotBlank;
 
 /***
  * 博客
+ * 
  * @author 文尧
  *
  */
 @Document
 public class Blog extends AbstractAuditDocument {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3147690484901739576L;
 	@DBRef
 	private User user;
 	@DBRef

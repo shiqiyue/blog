@@ -15,12 +15,12 @@
  */
 package cn.wuwenyao.blog.site.entity.mongo.base;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.EntityListeners;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.mongodb.core.mapping.event.LoggingEventListener;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 
@@ -30,7 +30,7 @@ import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventL
  * @author Oliver Gierke
  */
 @EntityListeners({ ValidatingMongoEventListener.class, LoggingEventListener.class})
-public class AbstractDocument {
+public class AbstractDocument implements Serializable{
 
 	@Id
 	private BigInteger id;

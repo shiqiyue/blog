@@ -1,6 +1,5 @@
 package cn.wuwenyao.blog.site.entity.mongo;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;

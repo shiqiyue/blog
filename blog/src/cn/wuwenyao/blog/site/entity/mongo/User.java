@@ -1,18 +1,14 @@
 package cn.wuwenyao.blog.site.entity.mongo;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.validation.annotation.Validated;
 
 import cn.wuwenyao.blog.site.entity.mongo.base.AbstractDocument;
 import cn.wuwenyao.blog.site.validator.NotBlank;
@@ -23,6 +19,11 @@ import cn.wuwenyao.blog.site.validator.NotBlank;
  *
  */
 public class User extends AbstractDocument implements Authentication, Cloneable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8794003268373923049L;
 
 	@Indexed(unique = true)
 	@NotBlank

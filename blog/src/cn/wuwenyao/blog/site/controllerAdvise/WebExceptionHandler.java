@@ -1,6 +1,5 @@
 package cn.wuwenyao.blog.site.controllerAdvise;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 
 import org.slf4j.Logger;

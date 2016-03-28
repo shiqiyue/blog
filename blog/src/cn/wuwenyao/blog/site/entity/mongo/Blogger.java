@@ -13,6 +13,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class Blogger extends User {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4287680826303540750L;
 	@DBRef
 	private List<Blog> blogs;
 	

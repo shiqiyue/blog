@@ -1,8 +1,5 @@
 package cn.wuwenyao.blog.site.converter;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
-
 import org.springframework.stereotype.Component;
 
 import cn.wuwenyao.blog.site.entity.mongo.Permission;

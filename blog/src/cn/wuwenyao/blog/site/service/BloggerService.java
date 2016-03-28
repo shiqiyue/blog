@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import cn.wuwenyao.blog.site.dao.mongo.BlogDao;
 import cn.wuwenyao.blog.site.dao.mongo.BloggerDao;
-import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 
 @Service
