@@ -17,4 +17,14 @@ public class SecurityBootstrap extends AbstractSecurityWebApplicationInitializer
 
         return true;
     }
+
+	
+
+	@Override
+	protected String getDispatcherWebApplicationContextSuffix() {
+		// TODO Auto-generated method stub
+		return super.getDispatcherWebApplicationContextSuffix();
+	}
+    
+    
 }
