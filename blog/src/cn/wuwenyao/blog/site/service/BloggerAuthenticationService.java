@@ -9,6 +9,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +21,14 @@ import cn.wuwenyao.blog.site.dao.mongo.BloggerDao;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpUtils;
+
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 @Service
-public class BloggerAuthenticationService implements AuthenticationProvider {
+public class BloggerAuthenticationService implements AuthenticationProvider, UserDetailsService {
 	private static final Logger log = LoggerFactory.getLogger(BloggerAuthenticationService.class);
 
 	@Autowired
@@ -52,6 +57,12 @@ public class BloggerAuthenticationService implements AuthenticationProvider {
 		}
 		blogger.setAuthenticated(true);
 		return blogger;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return bloggerDao.findByUsername(username);
 	}
 
 }

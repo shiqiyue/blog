@@ -18,6 +18,8 @@ public class SessionBootstrap extends AbstractHttpSessionApplicationInitializer{
 		return super.isAsyncSessionSupported();
 	}
 
+	
+	
 	/***
 	 * httpsession 从哪里获取,cookie或者header
 	 * @return

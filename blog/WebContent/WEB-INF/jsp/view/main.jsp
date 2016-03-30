@@ -19,7 +19,7 @@ hello world!!!
 	<a href="<c:url value='/login'></c:url>">登录</a>
 </security:authorize>
 <security:authorize access="isAuthenticated()">
-	欢迎:<security:authentication property="username"/>,
+	欢迎:<security:authentication property="principal.username"/>,
 	<a href="<c:url value='/logout'></c:url>">退出登录</a>
 </security:authorize>
 

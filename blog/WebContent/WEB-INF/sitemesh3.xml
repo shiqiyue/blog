@@ -1,9 +1,11 @@
 <?xml  version="1.0" encoding="UTF-8"?>
-<sitemesh >
-	<mapping decorator="/decorator/blog.jsp" />
+<sitemesh>
+	<!-- 默认装饰器 -->
+	<mapping decorator="/WEB-INF/decorator/default.jsp" />
+	
+	
 	<content-processor>
 		<tag-rule-bundle class="cn.wuwenyao.blog.sitemesh.tag.ruleBundle.JSRuleBundle" />
-		
 	</content-processor>
 </sitemesh>
 

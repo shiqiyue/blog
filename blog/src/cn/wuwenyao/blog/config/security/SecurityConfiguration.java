@@ -1,6 +1,7 @@
 package cn.wuwenyao.blog.config.security;
 
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.RememberMeAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +47,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin().loginPage("/login").failureUrl("/login?error")
 			.and()
-			.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+			.logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true)
+			.and()
+			.rememberMe().rememberMeParameter("rememberme").tokenValiditySeconds(60*60*24)
+			.userDetailsService(bloggerAuthenticationService);
 	}
 
 }

@@ -10,19 +10,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>main</title>
-<link href="media/css/login.css" rel="stylesheet" type="text/css" />
+<title>用户登录</title>
+<link href="<c:url value='static/css/signin.css'/>" rel="stylesheet">
 </head>
 <body>
-<form  method="post">
-	<label for="username">用户名:</label>
-	<input name="username"/>
-	<label for="password">密码:</label>
-	<input type="password" name="password"/>
-	<input type="submit" value="提交"/>
-	<security:csrfInput/>
-</form>
- <c:if test="${param.containsKey('error')}">
-        <b class="errors">${SPRING_SECURITY_LAST_EXCEPTION.message}</b><br />
-  </c:if>
+	
+	<div class="container">
+
+      <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">请登录</h2>
+        <label for="inputEmail" class="sr-only">用户名</label>
+        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="用户名" required autofocus>
+        <label for="inputPassword"  class="sr-only">密码</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <security:csrfInput/>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="rememberme" value="true"> 记住我
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      </form>
+
+    </div> 
+
 </body>
+
+

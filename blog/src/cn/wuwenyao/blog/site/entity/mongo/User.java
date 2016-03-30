@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.google.common.collect.Lists;
 
@@ -22,7 +23,7 @@ import cn.wuwenyao.blog.site.validator.NotBlank;
  * @author 文尧
  *
  */
-public class User extends AbstractDocument implements Authentication, Cloneable{
+public class User extends AbstractDocument implements UserDetails, Authentication, Cloneable{
 
 	/**
 	 * 
@@ -101,7 +102,7 @@ public class User extends AbstractDocument implements Authentication, Cloneable{
 	@Override
 	public Object getPrincipal() {
 		log.info("auth getPrincipal");
-		return username;
+		return this;
 	}
 
 	@Override
@@ -116,6 +117,32 @@ public class User extends AbstractDocument implements Authentication, Cloneable{
 		this.isAuthenticated = isAuthenticated;
 		
 	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		System.out.println("isAccountNonExpired");
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		System.out.println("isAccountNonLocked");
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		System.out.println("isCredentialsNonExpired");
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		System.out.println("isEnabled");
+		return true;
+	}
+	
+	
 
 	
 
