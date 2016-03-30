@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="blog" uri="http://www.wuwenyao.cn/blog/tld"%>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,8 +18,8 @@
 	<input name="username"/>
 	<label for="password">密码:</label>
 	<input type="password" name="password"/>
-	<template:csrf></template:csrf>
 	<input type="submit" value="提交"/>
+	<security:csrfInput/>
 </form>
  <c:if test="${param.containsKey('error')}">
         <b class="errors">${SPRING_SECURITY_LAST_EXCEPTION.message}</b><br />
