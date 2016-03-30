@@ -23,4 +23,11 @@ hello world!!!
 	<a href="<c:url value='/logout'></c:url>">退出登录</a>
 </security:authorize>
 
+<!-- 页面的js，放置在页面底部 -->
+<pagejs>
+<script>
+	var i = 1;
+	console.warn(i);
+</script>
+</pagejs>
 </body>

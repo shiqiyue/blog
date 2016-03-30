@@ -1,0 +1,9 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<sitemesh >
+	<mapping decorator="/decorator/blog.jsp" />
+	<content-processor>
+		<tag-rule-bundle class="cn.wuwenyao.blog.sitemesh.tag.ruleBundle.JSRuleBundle" />
+		
+	</content-processor>
+</sitemesh>
+

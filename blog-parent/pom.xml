@@ -17,7 +17,7 @@
 		<jackson.version>2.7.3</jackson.version>
 		<javax-persistence.version>1.0.2</javax-persistence.version>
 		<io-springside.version>4.3.0-SNAPSHOT</io-springside.version>
-		<sitemesh.version>2.4.2</sitemesh.version>
+		<sitemesh.version>3.0.1</sitemesh.version>
 	</properties>
 
 
@@ -227,12 +227,10 @@
 		</dependency>
 		<!-- sitemesh -->
 		<dependency>
-			<groupId>opensymphony</groupId>
+			<groupId>org.sitemesh</groupId>
 			<artifactId>sitemesh</artifactId>
 			<version>${sitemesh.version}</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<dependencyManagement>
@@ -250,6 +248,10 @@
 		<repository>
 			<id>debop-releases-bintray</id>
 			<url>http://dl.bintray.com/debop/maven</url>
+		</repository>
+		<repository>
+			<id>central.maven.org</id>
+			<url>http://central.maven.org/maven2/org/sitemesh/sitemesh/3.0.1/</url>
 		</repository>
 	</repositories>
 
