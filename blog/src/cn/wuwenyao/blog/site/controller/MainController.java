@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 
 import cn.wuwenyao.blog.site.entity.mongo.User;
 import cn.wuwenyao.blog.site.rest.controller.dto.rep.RepBaseDTO;
@@ -29,40 +30,27 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String main(@AuthenticationPrincipal User user) {
-		
 		return "main";
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String loginPage() {
+		System.out.println("login get");
 		return "login";
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	@ResponseBody
-	public RepBaseDTO login(String username, String password, HttpServletRequest request) {
-		RepBaseDTO repDTO = new RepBaseDTO();
-		try {
-			request.login(username, password);
-		} catch (ServletException e) {
-			repDTO.setCode(ResultCode.COMMON_FAIL);
-			repDTO.setMes("登录失败");
-			log.error("login fail", e);
-		}
-		repDTO.setCode(ResultCode.SUCCESS);
-		repDTO.setMes("登录成功");
-		return repDTO;
-	}
+	
 
 	@RequestMapping(value = "logout", method = { RequestMethod.POST, RequestMethod.GET })
 	public String logout(HttpServletRequest request) {
+		System.out.println("logout");
 		try {
 			request.logout();
 		} catch (ServletException e) {
 			log.error("logout fail", e);
 			return "error/logoutfail";
 		}
-		return "main";
+		return "redirect:/";
 
 	}
 

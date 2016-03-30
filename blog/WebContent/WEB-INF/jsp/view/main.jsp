@@ -14,5 +14,5 @@
 <body>
 hello world!!!
 <a href="<c:url value='/'></c:url>">主页</a>
-
+<a href="<c:url value='/logout'></c:url>">退出登录</a>
 </body>

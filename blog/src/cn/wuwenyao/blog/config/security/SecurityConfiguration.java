@@ -1,5 +1,6 @@
 package cn.wuwenyao.blog.config.security;
 
+import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import cn.wuwenyao.blog.site.service.BloggerAuthenticationService;
 
@@ -34,15 +36,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
-		System.out.println("httpsecuritydasd");
+		AuthenticationException e = new AuthenticationException();
 		security.authorizeRequests()
-			.antMatchers("/").authenticated()
-			.antMatchers("/test/**").authenticated()
+			.antMatchers("/user/**").authenticated()
+			.antMatchers("/").permitAll()
 			.anyRequest().permitAll()
 			.and()
-			.formLogin().loginPage("/login").permitAll()
+			.formLogin().loginPage("/login").failureUrl("/login?error")
 			.and()
-			.csrf().disable();
+			.logout().logoutUrl("/logout").logoutSuccessUrl("/");
 	}
 
 }

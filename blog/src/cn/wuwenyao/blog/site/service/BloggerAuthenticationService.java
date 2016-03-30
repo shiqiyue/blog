@@ -45,10 +45,10 @@ public class BloggerAuthenticationService implements AuthenticationProvider {
 		credentials.eraseCredentials();
 		Blogger blogger = bloggerDao.findByUsername(username);
 		if (blogger == null){
-			throw new AuthenticationServiceException("user not found");
+			throw new AuthenticationServiceException("用户名或者密码错误");
 		}
 		if (!BCryptPasswordAlgo.getInstance().checkPassword(password, blogger.getPassword())) {
-			throw new BadCredentialsException("credential wrong");
+			throw new BadCredentialsException("用户名或者密码错误");
 		}
 		blogger.setAuthenticated(true);
 		System.out.println("auth success");

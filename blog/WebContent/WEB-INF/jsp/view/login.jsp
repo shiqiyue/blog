@@ -17,7 +17,10 @@
 	<input name="username"/>
 	<label for="password">密码:</label>
 	<input type="password" name="password"/>
+	<template:csrf></template:csrf>
 	<input type="submit" value="提交"/>
 </form>
-
+ <c:if test="${param.containsKey('error')}">
+        <b class="errors">${SPRING_SECURITY_LAST_EXCEPTION.message}</b><br />
+  </c:if>
 </body>

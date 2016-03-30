@@ -76,8 +76,8 @@ public class TestController {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setName("无闻药");
 		blogger.setUserInfo(userInfo);
-		blogger.setPassword(BCryptPasswordAlgo.getInstance().encrptPassword("dasdasd"));
-		blogger.setUsername("gg simida");
+		blogger.setPassword(BCryptPasswordAlgo.getInstance().encrptPassword("pass"));
+		blogger.setUsername("user");
 		bloggerService.addBlogger(blogger);
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加博主成功");
