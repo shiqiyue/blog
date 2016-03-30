@@ -25,6 +25,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private BloggerAuthenticationService bloggerAuthenticationService;
+	
+	@Bean
+	public RedisRememberMeTokenRepository remembermeTokenRepository(){
+		return new RedisRememberMeTokenRepository();
+	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -50,7 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true)
 			.and()
 			.rememberMe().rememberMeParameter("rememberme").tokenValiditySeconds(60*60*24)
-			.userDetailsService(bloggerAuthenticationService);
+			.userDetailsService(bloggerAuthenticationService)
+			.tokenRepository(remembermeTokenRepository());
 	}
 
 }

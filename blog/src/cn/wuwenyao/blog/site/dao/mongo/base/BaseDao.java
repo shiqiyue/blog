@@ -14,4 +14,7 @@ public abstract interface BaseDao<T> extends MongoRepository<T, BigInteger> {
 
 	@Query("{?0:?1}")
 	public List<T> findByAttribute(String key, Object value);
+	
+	@Query("{?0:?1}")
+	public T findUniqueAttribute(String key, Object value);
 }
