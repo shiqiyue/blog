@@ -51,7 +51,6 @@ public class BloggerAuthenticationService implements AuthenticationProvider {
 			throw new BadCredentialsException("用户名或者密码错误");
 		}
 		blogger.setAuthenticated(true);
-		System.out.println("auth success");
 		return blogger;
 	}
 

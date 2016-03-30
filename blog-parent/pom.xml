@@ -133,6 +133,10 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
 		<!-- apache pool -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

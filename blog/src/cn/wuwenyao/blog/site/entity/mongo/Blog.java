@@ -33,6 +33,8 @@ public class Blog extends AbstractAuditDocument {
 	@NotBlank
 	private String about;
 
+	private int visitnum;
+
 	public String getContext() {
 		return context;
 	}
@@ -57,8 +59,6 @@ public class Blog extends AbstractAuditDocument {
 		this.title = title;
 	}
 
-	
-
 	public List<LeaveMessage> getLeaveMessages() {
 		return leaveMessages;
 	}
@@ -73,6 +73,18 @@ public class Blog extends AbstractAuditDocument {
 
 	public void setBlogger(Blogger blogger) {
 		this.blogger = blogger;
+	}
+
+	public int getVisitnum() {
+		return visitnum;
+	}
+
+	public void setVisitnum(int visitnum) {
+		this.visitnum = visitnum;
+	}
+
+	public void incrementVisitNum() {
+		visitnum += 1;
 	}
 
 }

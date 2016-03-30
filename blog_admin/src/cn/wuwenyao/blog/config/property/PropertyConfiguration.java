@@ -13,7 +13,6 @@ public class PropertyConfiguration {
 	private Environment environment;
 	
 	static{
-		System.out.println("excute  Property Configuration");
 	}
 
 	/***
@@ -25,7 +24,6 @@ public class PropertyConfiguration {
 	public PropertyProvider propertyProvider() {
 		PropertyProvider propertyProvider = new PropertyProvider();
 		propertyProvider.setHostName(environment.getProperty("server.host_name"));
-		System.out.println(propertyProvider.getHostName());
 		return propertyProvider;
 
 	}

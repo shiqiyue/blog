@@ -51,7 +51,6 @@ public class BloggerAuthenticationService implements AuthenticationProvider {
 			throw new BadCredentialsException("credential wrong");
 		}
 		blogger.setAuthenticated(true);
-		System.out.println("auth success");
 		return blogger;
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.access.expression.WebSecurityExpressionRoot;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import cn.wuwenyao.blog.site.service.BloggerAuthenticationService;
@@ -26,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		
 		auth.authenticationProvider(bloggerAuthenticationService);
 	}
 

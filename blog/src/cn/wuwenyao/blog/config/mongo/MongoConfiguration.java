@@ -49,13 +49,11 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Override
 	protected String getDatabaseName() {
-		System.out.println("host:" + host);
 		return environment.getProperty("mongo.dbname");
 	}
 
 	@Override
 	public Mongo mongo() throws Exception {
-		System.out.println(environment.getProperty("mongo.port", Integer.class));
 		return new MongoClient(environment.getProperty("mongo.host"),
 				environment.getProperty("mongo.port", Integer.class));
 	}

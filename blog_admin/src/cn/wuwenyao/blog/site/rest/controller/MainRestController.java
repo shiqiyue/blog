@@ -12,7 +12,6 @@ public class MainRestController {
 
 	@RequestMapping()
 	public RepBaseDTO main(){
-		System.out.println("rest main");
 		RepBaseDTO repDTO = new RepBaseDTO();
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("你好中国");
