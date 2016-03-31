@@ -7,7 +7,8 @@
 	</appender>
 	<appender name="mongodb" class="cn.wuwenyao.blog.log.mongodb.MongoDBAppender">
 		<connectionSource class="cn.wuwenyao.blog.log.mongodb.MongoDBConnectionSource">
-			<uri>mongodb://localhost</uri>
+			<host>localhost</host>
+			<port>27017</port>
 			<db>logdb</db>
 			<collection>logs</collection>
 		</connectionSource>

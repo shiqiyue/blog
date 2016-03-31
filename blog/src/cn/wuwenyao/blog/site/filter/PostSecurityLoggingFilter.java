@@ -17,8 +17,9 @@ public class PostSecurityLoggingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null && context.getAuthentication() != null)
+		if (context != null && context.getAuthentication() != null){
 			MDC.put("username", context.getAuthentication().getName());
+		}
 		chain.doFilter(request, response);
 		MDC.remove("username");
 	}

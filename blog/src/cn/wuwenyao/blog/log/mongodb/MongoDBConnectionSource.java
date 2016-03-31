@@ -4,14 +4,23 @@ import java.net.UnknownHostException;
 
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import com.mongodb.MongoURI;
 
+/***
+ * 
+ * @author 文尧
+ *
+ */
 public class MongoDBConnectionSource {
 
 	private volatile DBCollection dbCollection = null;
 
-	private String uri = null;
+	
+	private String host = "localhost";
+	
+	private int port = 27017;
 
 	private String db = null;
 
@@ -24,7 +33,8 @@ public class MongoDBConnectionSource {
 				dbCollectionHelper = dbCollection;
 				if (dbCollectionHelper == null) {
 					try {
-						final Mongo mongo = new Mongo(new MongoURI(uri));
+						MongoClient mongo = new MongoClient(host,port);
+						
 						dbCollection = mongo.getDB(db)
 								.getCollection(collection);
 						Runtime.getRuntime().addShutdownHook(
@@ -46,9 +56,19 @@ public class MongoDBConnectionSource {
 		return dbCollection;
 	}
 
-	public void setUri(String uri) {
-		this.uri = uri;
+	
+
+	public void setHost(String host) {
+		this.host = host;
 	}
+
+
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+
 
 	public void setDb(String db) {
 		this.db = db;
