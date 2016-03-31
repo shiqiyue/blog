@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import cn.wuwenyao.blog.site.dao.mongo.RememberMeTokenDao;
 import cn.wuwenyao.blog.site.entity.mongo.RememberMeToken;
 
-public class RedisRememberMeTokenRepository implements PersistentTokenRepository {
+public class MongoRememberMeTokenRepository implements PersistentTokenRepository {
 
 	@Autowired
 	private RememberMeTokenDao tokenDao;

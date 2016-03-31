@@ -10,9 +10,10 @@ public class JSRuleBundle implements TagRuleBundle {
 
 	@Override
 	public void install(State defaultState, ContentProperty contentProperty, SiteMeshContext siteMeshContext) {
-		defaultState.addRule("pagejs",
-				new ExportTagToContentRule(siteMeshContext, contentProperty.getChild("pagejs"), false));
-
+		defaultState.addRule("frontpagejs",
+				new ExportTagToContentRule(siteMeshContext, contentProperty.getChild("frontpagejs"), false));
+		defaultState.addRule("backpagejs",
+				new ExportTagToContentRule(siteMeshContext, contentProperty.getChild("backpagejs"), false));
 	}
 
 	@Override

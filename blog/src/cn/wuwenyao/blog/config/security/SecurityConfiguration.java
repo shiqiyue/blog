@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,8 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private BloggerAuthenticationService bloggerAuthenticationService;
 	
 	@Bean
-	public RedisRememberMeTokenRepository remembermeTokenRepository(){
-		return new RedisRememberMeTokenRepository();
+	public MongoRememberMeTokenRepository remembermeTokenRepository(){
+		return new MongoRememberMeTokenRepository();
 	}
 
 	@Override
@@ -44,19 +45,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
-		AuthenticationException e = new AuthenticationException();
 		security.authorizeRequests()
 			.antMatchers("/user/**").authenticated()
 			.antMatchers("/").permitAll()
 			.anyRequest().permitAll()
 			.and()
-			.formLogin().loginPage("/login").failureUrl("/login?error")
+			.formLogin().loginPage("/login").failureUrl("/login?s=error")
 			.and()
 			.logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true)
 			.and()
 			.rememberMe().rememberMeParameter("rememberme").tokenValiditySeconds(60*60*24)
 			.userDetailsService(bloggerAuthenticationService)
-			.tokenRepository(remembermeTokenRepository());
+			.tokenRepository(remembermeTokenRepository())
+			.and()
+			.sessionManagement().invalidSessionUrl("/login?s=invalid").maximumSessions(1)
+			.expiredUrl("/login?s=expired")
+			.and();
 	}
 
 }

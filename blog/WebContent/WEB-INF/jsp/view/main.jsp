@@ -10,24 +10,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>main</title>
+<title>主页</title>
+<link href="<c:url value='static/css/starter-template.css'/>" rel="stylesheet">
 </head>
 <body>
-hello world!!!
-<a href="<c:url value='/'></c:url>">主页</a>
-<security:authorize access="isAnonymous()">
-	<a href="<c:url value='/login'></c:url>">登录</a>
-</security:authorize>
-<security:authorize access="isAuthenticated()">
-	欢迎:<security:authentication property="principal.username"/>,
-	<a href="<c:url value='/logout'></c:url>">退出登录</a>
-</security:authorize>
+    <div class="container">
 
+      <div class="starter-template">
+        <h1>欢迎使用本博客</h1>
+        <p class="lead">欢迎使用本博客</p>
+      </div>
+
+    </div>
 <!-- 页面的js，放置在页面底部 -->
-<pagejs>
+<backpagejs>
 <script>
-	var i = 1;
-	console.warn(i);
+	activeNav(1);
 </script>
-</pagejs>
+</backpagejs>
 </body>

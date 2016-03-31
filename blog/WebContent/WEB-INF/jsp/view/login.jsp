@@ -16,9 +16,15 @@
 <body>
 	
 	<div class="container">
-
+		
       <form class="form-signin" method="post">
+      	
         <h2 class="form-signin-heading">请登录</h2>
+        <c:if test="${info != null }">
+        	<div role="alert" class="alert alert-danger">
+					${info }
+			</div>
+        </c:if>
         <label for="inputEmail" class="sr-only">用户名</label>
         <input type="text" id="inputEmail" name="username" class="form-control" placeholder="用户名" required autofocus>
         <label for="inputPassword"  class="sr-only">密码</label>

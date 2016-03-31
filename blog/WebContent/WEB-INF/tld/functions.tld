@@ -9,4 +9,9 @@
 	<tlib-version>1.0</tlib-version>
 	<uri>http://www.wuwenyao.cn/blog/tld</uri>
 
+	<function>
+		 <name>attribute</name>
+        <function-class>cn.wuwenyao.blog.util.request.RequestUtils</function-class>
+        <function-signature>java.lang.Object showSessionAttribute(java.lang.String)</function-signature>
+	</function>
 </taglib>
