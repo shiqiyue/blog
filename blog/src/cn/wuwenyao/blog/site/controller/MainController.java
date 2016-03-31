@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.User;
-import cn.wuwenyao.blog.site.rest.controller.dto.rep.RepBaseDTO;
-import cn.wuwenyao.blog.site.rest.controller.dto.rep.ResultCode;
+
 import cn.wuwenyao.blog.site.service.BlogService;
 
 @Controller
@@ -67,9 +67,8 @@ public class MainController {
 		model.addAttribute("info", info);
 		return "login";
 	}
-
 	
-
+	
 	@RequestMapping(value = "logout", method = { RequestMethod.POST, RequestMethod.GET })
 	public String logout(HttpServletRequest request) {
 		try {

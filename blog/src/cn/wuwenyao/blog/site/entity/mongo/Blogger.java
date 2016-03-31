@@ -19,21 +19,6 @@ public class Blogger extends User {
 	 * 
 	 */
 	private static final long serialVersionUID = -4287680826303540750L;
-	@DBRef
-	private List<Blog> blogs;
 	
-	public List<Blog> getBlogs() {
-		return blogs;
-	}
-
-	public void setBlogs(List<Blog> blogs) {
-		this.blogs = blogs;
-	}
 	
-	public void addBLog(Blog blog){
-		if (blogs == null){
-			blogs = Lists.newArrayList();
-		}
-		blogs.add(blog);
-	}
 }

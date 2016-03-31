@@ -15,9 +15,9 @@
 	<sitemesh:write property='title' />
 </title>
 <!-- Bootstrap core CSS -->
-<link href="<c:url value='static/css/bootstrap.min.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/bootstrap.min.css'/>" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="<c:url value='static/css/ie10-viewport-bug-workaround.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/ie10-viewport-bug-workaround.css'/>" rel="stylesheet">
 <sitemesh:write property='head' />
 </head>
 
@@ -27,7 +27,7 @@
 
 	<!-- js 都放置在页面底部，加快加载速度 -->
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="<c:url value='static/js/ie10-viewport-bug-workaround.js'/>"></script>
+    <script src="<c:url value='/static/js/ie10-viewport-bug-workaround.js'/>"></script>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -35,8 +35,8 @@
 	<![endif]-->
 	<frontpagejs>
 	<sitemesh:write property='frontpagejs' />	
-	<script src="<c:url value='static/js/jquery-2.2.2.min.js'/>"></script>
-	<script src="<c:url value='static/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/static/js/jquery-2.2.2.min.js'/>"></script>
+	<script src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
 	</frontpagejs>
 	<backpagejs>
 	<sitemesh:write property='backpagejs' />

@@ -26,11 +26,11 @@ public class Blog extends AbstractAuditDocument {
 	@DBRef
 	private List<LeaveMessage> leaveMessages;
 
-	@NotBlank
+	@NotBlank(message="标题不能为空")
 	private String title;
-	@NotBlank
+	@NotBlank(message="内容不能为空")
 	private String context;
-	@NotBlank
+	@NotBlank(message="关于不能为空")
 	private String about;
 
 	private int visitnum;

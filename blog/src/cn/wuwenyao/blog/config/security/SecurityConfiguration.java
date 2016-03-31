@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.userDetailsService(bloggerAuthenticationService)
 			.tokenRepository(remembermeTokenRepository())
 			.and()
-			.sessionManagement().invalidSessionUrl("/login?s=invalid").maximumSessions(1)
+			.sessionManagement().maximumSessions(1)
 			.expiredUrl("/login?s=expired")
 			.and();
 	}

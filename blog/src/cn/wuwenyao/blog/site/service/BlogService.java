@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -29,10 +30,6 @@ public class BlogService {
 	public void addBlog(Blog blog) {
 		blog = blogDao.save(blog);
 		Assert.notNull(blog);
-		Blogger blogger = blog.getBlogger();
-		blogger.addBLog(blog);
-		blogger = bloggerDao.save(blogger);
-		Assert.notNull(blogger);
 	}
 
 	public void updateBlog(Blog blog) {
@@ -42,6 +39,10 @@ public class BlogService {
 
 	public List<Blog> findAll() {
 		return blogDao.findAll();
+	}
+	
+	public Page<Blog> pageBlog(Pageable pageable){
+		return blogDao.findAll(pageable);
 	}
 
 	/***

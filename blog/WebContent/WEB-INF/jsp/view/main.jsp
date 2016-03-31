@@ -11,7 +11,8 @@
 <html>
 <head>
 <title>主页</title>
-<link href="<c:url value='static/css/starter-template.css'/>" rel="stylesheet">
+<link href="<c:url value='static/css/main.css'/>" rel="stylesheet">
+<link>
 </head>
 <body>
     <div class="container">
