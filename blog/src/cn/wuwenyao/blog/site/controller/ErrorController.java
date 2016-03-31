@@ -11,6 +11,7 @@ public class ErrorController {
 	@RequestMapping
 	public String main(String info, Model model){
 		model.addAttribute("error", info);
+		System.out.println(info);
 		return "error";
 	}
 }

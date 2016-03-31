@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+
 import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
+import cn.wuwenyao.blog.site.controller.dto.req.ReqLoginForm;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.User;
 
@@ -63,7 +65,7 @@ public class MainController {
 				info = "登录过期，请重新登录";
 			}
 		}
-		
+
 		model.addAttribute("info", info);
 		return "login";
 	}

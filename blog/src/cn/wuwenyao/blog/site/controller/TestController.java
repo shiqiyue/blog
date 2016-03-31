@@ -38,6 +38,12 @@ public class TestController {
 	private BloggerService bloggerService;
 
 
+	@RequestMapping("error/ajax")
+	@ResponseBody
+	public RepBaseDTO errorAjax(){
+		throw new RuntimeException("dasda");
+	}
+	
 	@RequestMapping("admin/add")
 	@ResponseBody
 	public RepBaseDTO addAdmin() {
