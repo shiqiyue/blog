@@ -17,6 +17,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.Ordered;
 import org.springframework.data.auditing.DateTimeProvider;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -31,12 +32,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import cn.wuwenyao.blog.config.audit.SimpleAuditorAware;
+import cn.wuwenyao.blog.config.audit.SimpleDateTimeProvider;
 import cn.wuwenyao.blog.config.cache.CacheConfiguration;
 import cn.wuwenyao.blog.config.mongo.MongoConfiguration;
 import cn.wuwenyao.blog.config.property.PropertyConfiguration;
 import cn.wuwenyao.blog.config.redis.RedisConfiguration;
 import cn.wuwenyao.blog.config.security.SecurityConfiguration;
 import cn.wuwenyao.blog.config.session.SessionConfiguration;
+import cn.wuwenyao.blog.site.entity.mongo.User;
 import cn.wuwenyao.blog.util.beanmapper.CustomObjectMapper;
 
 /***
@@ -160,6 +164,11 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
 	@Bean
 	public DateTimeProvider dateTimeProvider() {
 		return new SimpleDateTimeProvider();
+	}
+	
+	@Bean
+	public AuditorAware<User> auditorAware(){
+		return new SimpleAuditorAware();
 	}
 
 }

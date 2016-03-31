@@ -1,7 +1,11 @@
 package cn.wuwenyao.blog.site.dao.mongo;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import cn.wuwenyao.blog.site.dao.mongo.base.BaseDao;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
+import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 
 /***
  * dao of {@link Blog}
@@ -10,4 +14,6 @@ import cn.wuwenyao.blog.site.entity.mongo.Blog;
  */
 public interface BlogDao extends BaseDao<Blog>{
 
+	
+	public Page<Blog> findByBlogger(Blogger blogger, Pageable pageable);
 }

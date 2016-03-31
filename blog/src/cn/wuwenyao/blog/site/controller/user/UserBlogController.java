@@ -27,12 +27,24 @@ public class UserBlogController {
 	@Autowired
 	private BlogService blogService;
 	
+	@RequestMapping(value="test/add")
+	@ResponseBody
+	public String testAdd(){
+		Blog blog = new Blog();
+		blog.setAbout("about");
+		blog.setContext("context");
+		blog.setTitle("title");
+		blogService.addBlog(blog);
+		return "succ";
+	} 
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String listPage(@AuthenticationPrincipal User user,
+	public String listPage(@AuthenticationPrincipal Blogger blogger,
 			Pageable pageable,
 			Model model){
-		Page<Blog> blogs = blogService.pageBlog(pageable);
+		System.out.println(pageable.getPageSize());
+		System.out.println(pageable.getPageNumber());
+		Page<Blog> blogs = blogService.pageUserBlog(blogger, pageable);
 		model.addAttribute("blogs", blogs);
 		return "user/blog/list";
 	}
@@ -44,7 +56,7 @@ public class UserBlogController {
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	@ResponseBody
-	public RepBaseDTO addBlog(@AuthenticationPrincipal User user,
+	public RepBaseDTO addBlog(
 			@Valid Blog blog, BindingResult bindingResult){
 		RepBaseDTO repDTO = new RepBaseDTO();
 		if (bindingResult.hasErrors()){
@@ -52,7 +64,6 @@ public class UserBlogController {
 			repDTO.setMes(bindingResult.getAllErrors().get(0).getDefaultMessage());
 			return repDTO;
 		}
-		blog.setBlogger((Blogger) user);
 		blogService.addBlog(blog);
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加博客成功");

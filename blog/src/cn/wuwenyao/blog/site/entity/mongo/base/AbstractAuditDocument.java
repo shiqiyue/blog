@@ -13,6 +13,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class AbstractAuditDocument extends AbstractDocument{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8039688756088718584L;
 	@CreatedDate
 	private Date addDate;
 	@LastModifiedDate

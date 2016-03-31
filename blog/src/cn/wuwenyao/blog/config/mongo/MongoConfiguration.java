@@ -25,7 +25,7 @@ import com.mongodb.MongoClient;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "${package.mongo.dao}")
-@EnableMongoAuditing(dateTimeProviderRef = "dateTimeProvider")
+@EnableMongoAuditing(dateTimeProviderRef = "dateTimeProvider", auditorAwareRef="auditorAware")
 @ComponentScan(basePackages = { "${package.mongo.entity}",
 		"${package.convertor}" }, useDefaultFilters = false, includeFilters = {
 				@ComponentScan.Filter({ Document.class, Component.class }) })

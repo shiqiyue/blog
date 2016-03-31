@@ -1,4 +1,4 @@
-package cn.wuwenyao.blog.config;
+package cn.wuwenyao.blog.config.audit;
 
 import java.util.Calendar;
 

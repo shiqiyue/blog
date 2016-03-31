@@ -44,6 +44,10 @@ public class BlogService {
 	public Page<Blog> pageBlog(Pageable pageable){
 		return blogDao.findAll(pageable);
 	}
+	
+	public Page<Blog> pageUserBlog(Blogger blogger, Pageable pageable){
+		return blogDao.findByBlogger(blogger, pageable);
+	}
 
 	/***
 	 * 返回博客阅读量前五

@@ -29,7 +29,7 @@
           <div class="blog-post">
             <h2 class="blog-post-title">${blog.title}</h2>
             <p class="blog-post-meta">${blog.addDate }</p>
-			${blog.content }
+			${blog.context }
           </div><!-- /.blog-post -->
 		  </c:forEach>
           <nav>
