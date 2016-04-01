@@ -5,81 +5,131 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="blog" uri="http://www.wuwenyao.cn/blog/tld"%>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>我的博客</title>
 <link href="<c:url value='/static/css/blog.css'/>" rel="stylesheet">
-
+<link href="<c:url value='/static/css/wysiwyg.css'/>" rel="stylesheet">
 </head>
 <body>
 
-   <div class="container">
+	<div class="container">
+		<div class="blog-header">
+			<h1 class="blog-title">撰写博客</h1>
+		</div>
+		<form method="post" >
+			<input type="hidden" name="content" id="ipt_content">
+			<div class="form-group">
+				<label for="title">标题</label> <input id="ipt_title" type="text" class="form-control"
+					name="title" maxlength="20"/>
+			</div>
+			<div class="form-group">
+				<label for="title">简介</label> <textarea id="ipt_brief_intro" class="form-control"
+					 name="brief_intro" rows="5" ></textarea>
+			</div>
+			<div class="form-group">
+				<label for="keyword">关键字</label><input id="ipt_keyword" type="text" class="form-control"
+					name="keyword" placeholder="以空格分割">
+			</div>
+			
+			<div class="btn-toolbar" data-role="editor-toolbar"
+				data-target="#editor">
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="字体大小"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a data-edit="fontSize 5" class="fs-Five">大</a></li>
+						<li><a data-edit="fontSize 3" class="fs-Three">一般</a></li>
+						<li><a data-edit="fontSize 1" class="fs-One">小</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="文本高亮颜色"><i class="fa fa-paint-brush"></i>&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<p>&nbsp;&nbsp;&nbsp;文本高亮颜色:</p>
+                        <li><a data-edit="backColor #00FFFF">蓝</a></li>
+						<li><a data-edit="backColor #00FF00">绿</a></li>
+						<li><a data-edit="backColor #FF7F00">橙</a></li>
+						<li><a data-edit="backColor #FF0000">红</a></li>
+						<li><a data-edit="backColor #FFFF00">黄</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="字体颜色"><i class="fa fa-font"></i>&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<p>&nbsp;&nbsp;&nbsp;字体颜色:</p>
+						<li><a data-edit="foreColor #000000">黑</a></li>
+                        <li><a data-edit="foreColor #0000FF">蓝</a></li>
+                        <li><a data-edit="foreColor #30AD23">绿</a></li>
+						<li><a data-edit="foreColor #FF7F00">橙</a></li>
+						<li><a data-edit="foreColor #FF0000">红</a></li>
+						<li><a data-edit="foreColor #FFFF00">黄</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default" data-edit="bold" title="加粗 (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+					<a class="btn btn-default" data-edit="italic" title="倾斜 (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+					<a class="btn btn-default" data-edit="strikethrough" title="删除线"><i class="fa fa-strikethrough"></i></a>
+					<a class="btn btn-default" data-edit="underline" title="下划线 (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default" data-edit="insertunorderedlist" title="符号列表"><i class="fa fa-list-ul"></i></a>
+					<a class="btn btn-default" data-edit="insertorderedlist" title="数字列表"><i class="fa fa-list-ol"></i></a>
+					<a class="btn btn-default" data-edit="outdent" title="减少缩进 (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+					<a class="btn btn-default" data-edit="indent" title="缩进 (Tab)"><i class="fa fa-indent"></i></a>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default" data-edit="justifyleft" title="左对齐 (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+					<a class="btn btn-default" data-edit="justifycenter" title="居中 (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+					<a class="btn btn-default" data-edit="justifyright" title="右对齐 (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+					<a class="btn btn-default" data-edit="justifyfull" title="两端对其 (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="设置链接"><i class="fa fa-link"></i></a>
+					<div class="dropdown-menu input-append">
+						<input placeholder="链接地址" type="text" data-edit="createLink" />
+						<button class="btn" type="button">添加</button>
+					</div>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default" data-edit="unlink" title="移除链接"><i class="fa fa-unlink"></i></a>
+					<span class="btn btn-default" title="添加图片 (可拖拽)" id="pictureBtn"> <i class="fa fa-picture-o"></i>
+						<input class="imgUpload" type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+					</span>
+				</div>
+				<div class="btn-group">
+					<a class="btn btn-default" data-edit="undo" title="撤销 (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+					<a class="btn btn-default" data-edit="redo" title="取消撤销 (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+				</div>
+			</div>
+			<div id="editor" class="lead" data-placeholder="请在这里填写博客内容"></div>
+			<div id="editorPreview" class="lead"></div>
+			<p style="text-align: center;">
+				<a id="a_submit" class="btn btn-large btn-default jumbo" href="#!" >完成</a>
+			</p>
+		</form>
 
-      <div class="blog-header">
-        <h1 class="blog-title">我的博客</h1>
-      </div>
+	</div>
+	<!-- /.container -->
 
-      <div class="row">
-
-        <div class="col-sm-8 blog-main">
-		  <c:forEach items="${blogs.getContent() }" var="blog">
-          <div class="blog-post">
-            <h2 class="blog-post-title">${blog.title}</h2>
-            <p class="blog-post-meta">${blog.addDate }</p>
-			${blog.context }
-          </div><!-- /.blog-post -->
-		  </c:forEach>
-          <nav>
-            <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
-            </ul>
-          </nav>
-
-        </div><!-- /.blog-main -->
-
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>Archives</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Elsewhere</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
-
-      </div><!-- /.row -->
-
-    </div><!-- /.container -->
-
-<!-- 页面的js，放置在页面底部 -->
-<backpagejs>
-<script>
-</script>
-</backpagejs>
+	<!-- 页面的js，放置在页面底部 -->
+	<backpagejs>
+	<script src="<c:url value='/static/js/plunge/jquery/hotkey/jquery.hotkeys.js'/>"></script>
+	<script src="<c:url value='/static/js/plunge/bootstrap/wysiwyg/bootstrap-wysiwyg.min.js'/>"></script>
+	<script>
+	$(function(){
+		$('#editor').wysiwyg();
+		$("#a_submit").click(function(){
+			$('#editorPreview').html($('#editor').html());
+		});
+		$(".dropdown-menu > input").click(function (e) {
+			e.stopPropagation();
+		});
+	});
+	
+	</script> 
+	</backpagejs>
 </body>

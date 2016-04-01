@@ -18,6 +18,7 @@
 <link href="<c:url value='/static/css/bootstrap.min.css'/>" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="<c:url value='/static/css/ie10-viewport-bug-workaround.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/font-awesome.css'/>" rel="stylesheet">
 <sitemesh:write property='head' />
 </head>
 
