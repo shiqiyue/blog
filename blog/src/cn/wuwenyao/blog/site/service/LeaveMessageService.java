@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import cn.wuwenyao.blog.site.dao.mongo.LeaveMessageDao;
+import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.LeaveMessage;
 
 @Service
@@ -40,5 +41,10 @@ public class LeaveMessageService {
 	public Page<LeaveMessage> pageLeaveMessage(Pageable pageable) {
 		log.debug("page leaveMessage : {}", pageable);
 		return leaveMessageDao.findAll(pageable);
+	}
+	
+	public Page<LeaveMessage> pageLeaveMessage(Blog blog, Pageable pageable){
+		log.debug("page leaveMessage ,pageinfo: {},blog:{}", pageable, blog);
+		return leaveMessageDao.findByBlog(blog, pageable);
 	}
 }

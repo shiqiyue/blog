@@ -3,8 +3,10 @@ package cn.wuwenyao.blog.site.controller.user;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +24,10 @@ import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
 import cn.wuwenyao.blog.site.controller.dto.req.ReqBlogDTO;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
+import cn.wuwenyao.blog.site.entity.mongo.LeaveMessage;
 import cn.wuwenyao.blog.site.entity.mongo.User;
 import cn.wuwenyao.blog.site.service.BlogService;
+import cn.wuwenyao.blog.site.service.LeaveMessageService;
 
 @Controller
 @RequestMapping("/user/blog")
@@ -31,16 +35,31 @@ public class UserBlogController {
 	@Autowired
 	private BlogService blogService;
 	
+	private LeaveMessageService leaveMessageService;
+	
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String listPage(@AuthenticationPrincipal Blogger blogger,
-			Pageable pageable,
+			@PageableDefault Pageable pageable,
 			Model model){
 		System.out.println(pageable.getPageSize());
 		System.out.println(pageable.getPageNumber());
 		Page<Blog> blogs = blogService.pageUserBlog(blogger, pageable);
 		model.addAttribute("blogs", blogs);
 		return "user/blog/list";
+	}
+	
+	@RequestMapping(value="detail/{id}", method = RequestMethod.GET)
+	public String detailPage(
+			@PathVariable Blog blog,
+			@Qualifier("mes") @PageableDefault Pageable pageable,
+			Model model){
+		//博客
+		model.addAttribute("blog", blog);
+		//留言
+		Page<LeaveMessage> leaveMessages = leaveMessageService.pageLeaveMessage(blog, pageable);
+		model.addAttribute("leaveMessages", leaveMessages);
+		return "user/blog/detail";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
