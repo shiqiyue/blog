@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label for="keyword">关键字</label>
 				<input id="ipt_keyword" type="text" class="form-control" pattern="^([\u4E00-\u9FFFA-Za-z0-9]+\s*)+$"
-					name="keywords" placeholder="以空格分割" required="required" value="${blog:listCombine(blog.keyword,' ') }">
+					name="keywords" placeholder="以空格分割" required="required" value="${blog:listCombine(blog.keywords,' ') }">
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
@@ -113,7 +113,7 @@
 			</div>
 			
 			<div id="editor"  data-placeholder="请在这里填写博客内容">${blog.context }</div>
-			<input type="hidden" id="ipt_context"  name="context" value="${blog.context }">
+			<input type="hidden" id="ipt_context"  name="context" >
 			<div class="help-block with-errors"></div>
 			</div>
 			<button type="submit" class="btn btn-default">保存</button>
@@ -133,6 +133,7 @@
 		$('#editor').on('change', function(){
 		    $("#ipt_context").val($(this).html());
 		});
+		$("#ipt_context").val($("#editor").html());
 		$("#editor").on('blur', function(){
 			var $context = $(this);
 			var context = $context.html();

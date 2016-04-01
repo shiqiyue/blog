@@ -27,7 +27,7 @@
         <div class="col-sm-8 blog-main">
 		  <c:forEach items="${blogs.getContent() }" var="blog">
           <div class="blog-post">
-            <h2 class="blog-post-title">${blog.title}</h2>
+            <h2 class="blog-post-title"><a href="<c:url value='/user/blog/edit/${blog.id} '/>">${blog.title}</a></h2>
             <p class="blog-post-meta">${blog.addDate }</p>
 			${blog.context }
           </div><!-- /.blog-post -->

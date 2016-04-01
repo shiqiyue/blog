@@ -77,7 +77,7 @@ public class UserBlogController {
 	
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
 	public String editBlogPage(@AuthenticationPrincipal User user,
-			@PathVariable Blog blog,
+			@PathVariable(value="id") Blog blog,
 			Model model){
 		if (blog == null){
 			return "redirect:/error?info=该博客不存在";
@@ -86,12 +86,13 @@ public class UserBlogController {
 			return "redirect:/error?info=没权限修改该博客";
 		}
 		model.addAttribute("blog", blog);
-		return "user/blog/edit";
+		return "user/blog/addOrUpdate";
 	}
 	
-	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	@RequestMapping(value = "edit/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public RepBaseDTO editBlog(@AuthenticationPrincipal User user,
+			@PathVariable(value="id") Blog blog,
 			@Valid ReqBlogDTO blogDTO, BindingResult bindingResult){
 		RepBaseDTO repDTO = new RepBaseDTO();
 		if (bindingResult.hasErrors()){
@@ -99,20 +100,19 @@ public class UserBlogController {
 			repDTO.setMes(bindingResult.getAllErrors().get(0).getDefaultMessage());
 			return repDTO;
 		}
-		Blog blog = bulidBlogForEditBlog(blogDTO);
 		if (!blog.getBlogger().equals(user)){
 			repDTO.setCode(ResultCode.COMMON_FAIL);
 			repDTO.setMes("没权限修改该博客");
 			return repDTO;
 		}
+		blog = bulidBlogForEditBlog(blogDTO, blog);
 		blogService.updateBlog(blog);
 		repDTO.setCode(ResultCode.SUCCESS);
-		repDTO.setMes("添加博客成功");
+		repDTO.setMes("修改博客成功");
 		return repDTO;
 	}
 	
-	public Blog bulidBlogForEditBlog(ReqBlogDTO blogDTO){
-		Blog blog = blogService.findOne(blogDTO.getId());
+	public Blog bulidBlogForEditBlog(ReqBlogDTO blogDTO, Blog blog){
 		blog.setBriefIntro(blogDTO.getBriefIntro());
 		blog.setContext(blogDTO.getContext());
 		blog.setTitle(blogDTO.getTitle());

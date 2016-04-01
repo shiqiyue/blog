@@ -21,21 +21,14 @@
         <h1>欢迎使用本博客</h1>
         <p class="lead">欢迎使用本博客</p>
       </div>
-	  <button id="btn_ajax">ajax error</button>
-	  <div id="div_error">
-	  </div>
+	 
     </div>
 <!-- 页面的js，放置在页面底部 -->
 <backpagejs>
 <script>
 	activeNav(1);
 	$(function(){
-		$("#btn_ajax").click(function(){
-			$.post("${url_errorAjax}",{},function(data){
-				console.warn(data);
-				$("#div_error").html(data);
-			})
-		});
+		
 	});
 </script>
 </backpagejs>
