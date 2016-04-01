@@ -34,7 +34,7 @@ import cn.wuwenyao.blog.site.service.LeaveMessageService;
 public class UserBlogController {
 	@Autowired
 	private BlogService blogService;
-	
+	@Autowired
 	private LeaveMessageService leaveMessageService;
 	
 
@@ -51,7 +51,7 @@ public class UserBlogController {
 	
 	@RequestMapping(value="detail/{id}", method = RequestMethod.GET)
 	public String detailPage(
-			@PathVariable Blog blog,
+			@PathVariable("id") Blog blog,
 			@Qualifier("mes") @PageableDefault Pageable pageable,
 			Model model){
 		//博客
