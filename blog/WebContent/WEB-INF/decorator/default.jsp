@@ -38,6 +38,8 @@
 	<sitemesh:write property='frontpagejs' />	
 	<script src="<c:url value='/static/js/jquery-2.2.2.min.js'/>"></script>
 	<script src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/static/js/plunge/bootstrap/dialog/bootstrap3-dialog/js/bootstrap-dialog.min.js'/>"></script>
+	<script src="<c:url value='/static/js/my/common-dialog.js'/>"></script>
 	</frontpagejs>
 	<backpagejs>
 	<sitemesh:write property='backpagejs' />

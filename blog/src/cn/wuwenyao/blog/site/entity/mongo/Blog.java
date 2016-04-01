@@ -2,6 +2,9 @@ package cn.wuwenyao.blog.site.entity.mongo;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,10 +33,13 @@ public class Blog extends AbstractAuditDocument {
 
 	@NotBlank(message="标题不能为空")
 	private String title;
+	@NotBlank(message="简介不能为空")
+	private String briefIntro;
 	@NotBlank(message="内容不能为空")
 	private String context;
-	@NotBlank(message="关于不能为空")
-	private String about;
+	@NotNull(message="关键字不能为空")
+	@Size(min=1, message="关键字不能为空")
+	private List<String> keywords;
 
 	private int visitnum;
 
@@ -45,13 +51,7 @@ public class Blog extends AbstractAuditDocument {
 		this.context = context;
 	}
 
-	public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
-	}
+	
 
 	public String getTitle() {
 		return title;
@@ -87,6 +87,22 @@ public class Blog extends AbstractAuditDocument {
 
 	public void incrementVisitNum() {
 		visitnum += 1;
+	}
+
+	public String getBriefIntro() {
+		return briefIntro;
+	}
+
+	public void setBriefIntro(String briefIntro) {
+		this.briefIntro = briefIntro;
+	}
+
+	public List<String> getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(List<String> keywords) {
+		this.keywords = keywords;
 	}
 
 }

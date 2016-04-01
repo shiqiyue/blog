@@ -67,7 +67,7 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
 	public String webBasePackage;
 
 	@Bean
-	public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 

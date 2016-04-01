@@ -7,7 +7,7 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-
+<c:url value="/user/blog/list" var="url_myBlog"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,21 +21,26 @@
 		<div class="blog-header">
 			<h1 class="blog-title">撰写博客</h1>
 		</div>
-		<form method="post" >
-			<input type="hidden" name="content" id="ipt_content">
+		<form id="form" role="form" data-toggle="validator" >
 			<div class="form-group">
-				<label for="title">标题</label> <input id="ipt_title" type="text" class="form-control"
-					name="title" maxlength="20"/>
+				<label for="title">标题</label>
+				<input id="ipt_title" type="text" class="form-control"
+					name="title" maxlength="20" required="required"/>
+				<div class="help-block with-errors"></div>	
 			</div>
 			<div class="form-group">
-				<label for="title">简介</label> <textarea id="ipt_brief_intro" class="form-control"
-					 name="brief_intro" rows="5" ></textarea>
+				<label for="title">简介</label> 
+				<textarea id="ipt_brief_intro" class="form-control"
+					 name="briefIntro" rows="5" required="required"></textarea>
+				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
-				<label for="keyword">关键字</label><input id="ipt_keyword" type="text" class="form-control"
-					name="keyword" placeholder="以空格分割">
+				<label for="keyword">关键字</label>
+				<input id="ipt_keyword" type="text" class="form-control" pattern="^([\u4E00-\u9FFFA-Za-z0-9]+\s*)+$"
+					name="keywords" placeholder="以空格分割" required="required">
+				<div class="help-block with-errors"></div>
 			</div>
-			
+			<div class="form-group">
 			<div class="btn-toolbar" data-role="editor-toolbar"
 				data-target="#editor">
 				<div class="btn-group">
@@ -105,13 +110,14 @@
 					<a class="btn btn-default" data-edit="redo" title="取消撤销 (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
 				</div>
 			</div>
-			<div id="editor" class="lead" data-placeholder="请在这里填写博客内容"></div>
-			<div id="editorPreview" class="lead"></div>
-			<p style="text-align: center;">
-				<a id="a_submit" class="btn btn-large btn-default jumbo" href="#!" >完成</a>
-			</p>
+			
+			<div id="editor"  data-placeholder="请在这里填写博客内容"></div>
+			<input type="hidden" id="ipt_context"  name="context">
+			<div class="help-block with-errors"></div>
+			</div>
+			<button type="submit" class="btn btn-default">保存</button>
 		</form>
-
+		
 	</div>
 	<!-- /.container -->
 
@@ -119,17 +125,66 @@
 	<backpagejs>
 	<script src="<c:url value='/static/js/plunge/jquery/hotkey/jquery.hotkeys.js'/>"></script>
 	<script src="<c:url value='/static/js/plunge/bootstrap/wysiwyg/bootstrap-wysiwyg.min.js'/>"></script>
+	<script src="<c:url value='/static/js/plunge/bootstrap/validation/validator.js'/>"></script>
 	<script>
 	$(function(){
 		$('#editor').wysiwyg();
-		$("#a_submit").click(function(){
-			$('#editorPreview').html($('#editor').html());
+		$('#editor').on('change', function(){
+		    $("#ipt_context").val($(this).html());
 		});
+		$("#editor").on('blur', function(){
+			var $context = $(this);
+			var context = $context.html();
+			if (context.trim().length != 0){
+				$context.removeClass("has-error");
+			}else{
+				$context.addClass("has-error");
+			}
+		})
 		$(".dropdown-menu > input").click(function (e) {
 			e.stopPropagation();
 		});
+		function addBlog(){
+			$.post("",$("#form").serialize(),function(data){
+				callBackDialog(data.mes, function(){
+					location.href = "${url_myBlog}";
+				});
+			})
+		}
+
+		$('#form').validator().on('submit', function (e) {
+			if (e.isDefaultPrevented()) {
+				check.checkAll();
+			    return false;
+			  } 
+			if (!check.checkAll()){
+				 return false;
+			 }
+			 addBlog();
+			 //阻止默认的post行为，使用ajax post;
+			 return false;
+		})
 	});
 	
+	
 	</script> 
+	<script>
+	var check = {};
+	check.checkAll = function (){
+		if (!check.checkContent()){
+			return false;
+		}
+		return true;
+	}
+	check.checkContent = function(){
+		var content = $("#ipt_context").val();
+		if (content.trim().length == 0){
+			$("#editor").addClass("has-error");
+			return false;
+		}
+		$("#editor").removeClass("has-error");
+		return true;
+	}
+	</script>
 	</backpagejs>
 </body>

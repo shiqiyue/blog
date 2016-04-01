@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springside.modules.mapper.BeanMapper;
+
+import com.google.common.collect.Lists;
 
 import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
 import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
+import cn.wuwenyao.blog.site.controller.dto.req.ReqBlogDTO;
 import cn.wuwenyao.blog.site.entity.mongo.Blog;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 import cn.wuwenyao.blog.site.entity.mongo.User;
@@ -31,7 +35,6 @@ public class UserBlogController {
 	@ResponseBody
 	public String testAdd(){
 		Blog blog = new Blog();
-		blog.setAbout("about");
 		blog.setContext("context");
 		blog.setTitle("title");
 		blogService.addBlog(blog);
@@ -57,17 +60,26 @@ public class UserBlogController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	@ResponseBody
 	public RepBaseDTO addBlog(
-			@Valid Blog blog, BindingResult bindingResult){
+			@Valid ReqBlogDTO blog, BindingResult bindingResult){
 		RepBaseDTO repDTO = new RepBaseDTO();
 		if (bindingResult.hasErrors()){
 			repDTO.setCode(ResultCode.COMMON_FAIL);
 			repDTO.setMes(bindingResult.getAllErrors().get(0).getDefaultMessage());
 			return repDTO;
 		}
-		blogService.addBlog(blog);
+		blogService.addBlog(bulidBlogForAddBlog(blog));
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加博客成功");
 		return repDTO;
+	}
+	
+	public Blog bulidBlogForAddBlog(ReqBlogDTO blogDTO){
+		Blog blog = new Blog();
+		blog.setBriefIntro(blogDTO.getBriefIntro());
+		blog.setContext(blogDTO.getContext());
+		blog.setTitle(blogDTO.getTitle());
+		blog.setKeywords(Lists.newArrayList(blogDTO.getKeywords().split("\\s")));
+		return blog;
 	}
 	
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
