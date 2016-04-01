@@ -27,6 +27,10 @@ public class BlogService {
 	@Autowired
 	private BloggerDao bloggerDao;
 
+	public Blog findOne(BigInteger id){
+		return blogDao.findOne(id);
+	}
+	
 	public void addBlog(Blog blog) {
 		blog = blogDao.save(blog);
 		Assert.notNull(blog);

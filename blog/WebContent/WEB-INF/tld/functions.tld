@@ -10,8 +10,8 @@
 	<uri>http://www.wuwenyao.cn/blog/tld</uri>
 
 	<function>
-		 <name>attribute</name>
-        <function-class>cn.wuwenyao.blog.util.request.RequestUtils</function-class>
-        <function-signature>java.lang.Object showSessionAttribute(java.lang.String)</function-signature>
+		 <name>listCombine</name>
+        <function-class>cn.wuwenyao.blog.util.list.ListUtils</function-class>
+        <function-signature>java.lang.String conbineList(java.util.List,java.lang.String)</function-signature>
 	</function>
 </taglib>

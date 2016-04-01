@@ -31,15 +31,6 @@ public class UserBlogController {
 	@Autowired
 	private BlogService blogService;
 	
-	@RequestMapping(value="test/add")
-	@ResponseBody
-	public String testAdd(){
-		Blog blog = new Blog();
-		blog.setContext("context");
-		blog.setTitle("title");
-		blogService.addBlog(blog);
-		return "succ";
-	} 
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String listPage(@AuthenticationPrincipal Blogger blogger,
@@ -53,8 +44,10 @@ public class UserBlogController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String addBlogPage(@AuthenticationPrincipal User user){
-		return "user/blog/add";
+	public String addBlogPage(@AuthenticationPrincipal User user,
+			Model model){
+		
+		return "user/blog/addOrUpdate";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -99,13 +92,14 @@ public class UserBlogController {
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	@ResponseBody
 	public RepBaseDTO editBlog(@AuthenticationPrincipal User user,
-			@Valid Blog blog, BindingResult bindingResult){
+			@Valid ReqBlogDTO blogDTO, BindingResult bindingResult){
 		RepBaseDTO repDTO = new RepBaseDTO();
 		if (bindingResult.hasErrors()){
 			repDTO.setCode(ResultCode.COMMON_FAIL);
 			repDTO.setMes(bindingResult.getAllErrors().get(0).getDefaultMessage());
 			return repDTO;
 		}
+		Blog blog = bulidBlogForEditBlog(blogDTO);
 		if (!blog.getBlogger().equals(user)){
 			repDTO.setCode(ResultCode.COMMON_FAIL);
 			repDTO.setMes("没权限修改该博客");
@@ -115,5 +109,14 @@ public class UserBlogController {
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加博客成功");
 		return repDTO;
+	}
+	
+	public Blog bulidBlogForEditBlog(ReqBlogDTO blogDTO){
+		Blog blog = blogService.findOne(blogDTO.getId());
+		blog.setBriefIntro(blogDTO.getBriefIntro());
+		blog.setContext(blogDTO.getContext());
+		blog.setTitle(blogDTO.getTitle());
+		blog.setKeywords(Lists.newArrayList(blogDTO.getKeywords().split("\\s")));
+		return blog;
 	}
 }

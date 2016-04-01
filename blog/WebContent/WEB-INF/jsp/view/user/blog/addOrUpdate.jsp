@@ -22,22 +22,23 @@
 			<h1 class="blog-title">撰写博客</h1>
 		</div>
 		<form id="form" role="form" data-toggle="validator" >
+			<input type="hidden" name="id" value="${blog.id }">
 			<div class="form-group">
 				<label for="title">标题</label>
-				<input id="ipt_title" type="text" class="form-control"
+				<input id="ipt_title" type="text" class="form-control" value="${blog.title }"
 					name="title" maxlength="20" required="required"/>
 				<div class="help-block with-errors"></div>	
 			</div>
 			<div class="form-group">
 				<label for="title">简介</label> 
-				<textarea id="ipt_brief_intro" class="form-control"
-					 name="briefIntro" rows="5" required="required"></textarea>
+				<textarea id="ipt_brief_intro" class="form-control" 
+					 name="briefIntro" rows="5" required="required">${blog.briefIntro }</textarea>
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
 				<label for="keyword">关键字</label>
 				<input id="ipt_keyword" type="text" class="form-control" pattern="^([\u4E00-\u9FFFA-Za-z0-9]+\s*)+$"
-					name="keywords" placeholder="以空格分割" required="required">
+					name="keywords" placeholder="以空格分割" required="required" value="${blog:listCombine(blog.keyword,' ') }">
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
@@ -111,8 +112,8 @@
 				</div>
 			</div>
 			
-			<div id="editor"  data-placeholder="请在这里填写博客内容"></div>
-			<input type="hidden" id="ipt_context"  name="context">
+			<div id="editor"  data-placeholder="请在这里填写博客内容">${blog.context }</div>
+			<input type="hidden" id="ipt_context"  name="context" value="${blog.context }">
 			<div class="help-block with-errors"></div>
 			</div>
 			<button type="submit" class="btn btn-default">保存</button>
