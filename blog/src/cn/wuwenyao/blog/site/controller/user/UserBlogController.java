@@ -40,10 +40,8 @@ public class UserBlogController {
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String listPage(@AuthenticationPrincipal Blogger blogger,
-			@PageableDefault Pageable pageable,
+			@PageableDefault(size=5) Pageable pageable,
 			Model model){
-		System.out.println(pageable.getPageSize());
-		System.out.println(pageable.getPageNumber());
 		Page<Blog> blogs = blogService.pageUserBlog(blogger, pageable);
 		model.addAttribute("blogs", blogs);
 		return "user/blog/list";

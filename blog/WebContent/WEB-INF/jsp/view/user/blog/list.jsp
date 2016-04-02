@@ -29,29 +29,46 @@
 				<c:forEach items="${blogs.getContent() }" var="blog">
 					<div class="blog-post">
 						<div class="row">
-							<div class="col-sm-8">
-								<h2 class="blog-post-title">${blog.title}</h2>
-							</div>
-							<div class="col-sm-4">
-								<div class="btn-group" role="group">
-									<a href="<c:url value='/user/blog/detail/${blog.id} '/>"
-										role="button" class="btn btn-default left">浏览</a> <a
-										href="<c:url value='/user/blog/edit/${blog.id }'/>"
-										role="button" class="btn btn-default left">修改</a>
-								</div>
-							</div>
+							<h2 class="blog-post-title">
+								<a href="<c:url value='/user/blog/detail/${blog.id} '/>">${blog.title}</a>
+							</h2>
 						</div>
 
 						<p class="blog-post-meta">${blog.addDate }</p>
 						<div class="blog-post-briefIntro">${blog.briefIntro }</div>
-
+						<div class="row">
+							<div class="col-sm-offset-10 col-sm-2">
+								<div class="btn-group" role="group">
+									<a href="<c:url value='/user/blog/edit/${blog.id }'/>"
+										role="button" class="btn btn-default left">修改</a>
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- /.blog-post -->
 				</c:forEach>
 				<nav>
-					<ul class="pager">
-						<li><a href="#">Previous</a></li>
-						<li><a href="#">Next</a></li>
+					<ul class="pager" id="ul_pager">
+						<c:choose>
+							<c:when test="${!blogs.hasPrevious() }">
+								<li class="disabled"><a  href="#!">向前</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="?page=${blogs.getNumber()-1 }">向前</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${!blogs.hasNext() }">
+								<li class="disabled"><a  href="#!">向后</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="?page=${blogs.getNumber()+1 }">向后</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:if test="" >
+						<li><a class="disabled" href="#!">向前</a></li>
+						<li><a href="<c:url value="?page=${blogs.getNumber()+1 }"/>">向后</a></li>
+						</c:if>
 					</ul>
 				</nav>
 
@@ -102,6 +119,7 @@
 	<!-- /.container -->
 
 	<!-- 页面的js，放置在页面底部 -->
-	<backpagejs> <script>
-</script> </backpagejs>
+	<backpagejs> 
+		
+	</backpagejs>
 </body>

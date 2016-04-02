@@ -11,18 +11,23 @@
 <html>
 <head>
 <title>主页</title>
-<link href="<c:url value='/static/css/main.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/blog.css'/>" rel="stylesheet">
 <link>
 </head>
 <body>
-    <div class="container">
+<div class="container">
 
-      <div class="starter-template">
-        <h1>欢迎使用本博客</h1>
-        <p class="lead">欢迎使用本博客</p>
-      </div>
-	 
-    </div>
+		<div class="blog-header">
+			<h1 class="blog-title">欢迎使用博客</h1>
+		</div>
+		<p class=" lead">
+			&nbsp;&nbsp;你好，滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答
+			滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答滴答答
+		</p>
+		
+
+	</div>
+
 <!-- 页面的js，放置在页面底部 -->
 <backpagejs>
 <script>

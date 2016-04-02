@@ -11,7 +11,8 @@
 <html>
 <head>
 <title>用户登录</title>
-<link href="<c:url value='static/css/signin.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/blog.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/signin.css'/>" rel="stylesheet">
 </head>
 <body>
 	
