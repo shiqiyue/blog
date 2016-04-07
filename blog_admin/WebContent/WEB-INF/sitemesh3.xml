@@ -1,9 +1,14 @@
 <?xml  version="1.0" encoding="UTF-8"?>
 <sitemesh>
+	<mapping>
+		<path>/login*</path>
+		<path>/logout*</path>
+    	<decorator>/WEB-INF/decorator/login.jsp</decorator>
+	</mapping>
 	<!-- 默认装饰器 -->
 	<mapping>
 		<path>/*</path>
-    	<decorator>/WEB-INF/decorator/default.jsp</decorator>
+    	<decorator>/WEB-INF/decorator/manage.jsp</decorator>
 	</mapping>
 	
 	<content-processor>

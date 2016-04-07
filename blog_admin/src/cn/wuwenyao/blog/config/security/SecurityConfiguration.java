@@ -46,13 +46,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
 		security.authorizeRequests()
-			.antMatchers("/user/**").authenticated()
-			.antMatchers("/").permitAll()
+			.antMatchers("/*").authenticated()
 			.anyRequest().permitAll()
 			.and()
-			.formLogin().loginPage("/login").failureUrl("/login?s=error")
+			.formLogin().loginPage("/login").failureUrl("/login?s=error").permitAll()
 			.and()
-			.logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true)
+			.logout().logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true)
 			.and()
 			.rememberMe().rememberMeParameter("rememberme").tokenValiditySeconds(60*60*24)
 			.userDetailsService(bloggerAuthenticationService)
