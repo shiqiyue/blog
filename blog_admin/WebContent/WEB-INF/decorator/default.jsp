@@ -18,7 +18,9 @@
 <link href="<c:url value='/static/css/bootstrap.min.css'/>" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="<c:url value='/static/css/ie10-viewport-bug-workaround.css'/>" rel="stylesheet">
-<link href="<c:url value='/static/css/font-awesome.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/ace-master/assets/css/font-awesome.min.css'/>" rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='/static/ace-master/assets/css/ace.min.css'/>" />
+<link rel="stylesheet" href="<c:url value='/static/ace-master/assets/css/ace-rtl.min.css'/>" />
 <sitemesh:write property='head' />
 </head>
 
@@ -40,6 +42,11 @@
 	<script src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/static/js/plunge/bootstrap/dialog/bootstrap3-dialog/js/bootstrap-dialog.min.js'/>"></script>
 	<script src="<c:url value='/static/js/my/common-dialog.js'/>"></script>
+	<script>
+		function addBodyClass(c){
+			$("body").addClass(c);
+		}
+	</script>
 	</frontpagejs>
 	<backpagejs>
 	<sitemesh:write property='backpagejs' />

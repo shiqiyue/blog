@@ -1,5 +1,8 @@
 package cn.wuwenyao.blog.bootstrap;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import cn.wuwenyao.blog.config.RestContextConfiguration;
 import cn.wuwenyao.blog.config.RootContextConfiguration;
 import cn.wuwenyao.blog.config.WebContextConfiguration;
+import cn.wuwenyao.blog.site.filter.MyFilter;
 
 /***
  * web应用程序初始化，相当于web.xml
@@ -65,8 +69,6 @@ public class FrameworkBootstrap implements WebApplicationInitializer {
 		FilterRegistration.Dynamic encodingFilter = container.addFilter("encodingFilter",
 				new CharacterEncodingFilter("UTF-8", true));
 		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
-
-		
 
 	}
 }

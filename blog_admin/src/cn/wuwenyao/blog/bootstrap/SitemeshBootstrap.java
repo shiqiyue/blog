@@ -1,5 +1,10 @@
 package cn.wuwenyao.blog.bootstrap;
 
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,7 +26,6 @@ public class SitemeshBootstrap implements WebApplicationInitializer {
 		// sitemesh装饰器的过滤器
 		FilterRegistration.Dynamic sitemeshFilter = container.addFilter("sitemeshFilter", new ConfigurableSiteMeshFilter());
 		sitemeshFilter.addMappingForUrlPatterns(null, false, "/*");
-		;
 
 	}
 

@@ -4,7 +4,6 @@
 	<mapping>
 		<path>/*</path>
     	<decorator>/WEB-INF/decorator/default.jsp</decorator>
-    	<decorator>/WEB-INF/decorator/nav.jsp</decorator>
 	</mapping>
 	
 	<content-processor>

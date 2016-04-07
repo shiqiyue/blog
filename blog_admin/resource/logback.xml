@@ -118,7 +118,7 @@
 		<appender-ref ref="statisticsLogFile" />
 		<appender-ref ref="metricsLogFile" />
 	</logger>
-	<root level="WARN">
+	<root level="INFO">
 		<appender-ref ref="console" />
 		<appender-ref ref="mongodb"/>
 	</root>
