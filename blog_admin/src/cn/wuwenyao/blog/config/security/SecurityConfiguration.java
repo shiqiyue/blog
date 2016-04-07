@@ -18,14 +18,14 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.web.access.expression.WebSecurityExpressionRoot;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
-import cn.wuwenyao.blog.site.service.BloggerAuthenticationService;
+import cn.wuwenyao.blog.site.service.AdminAuthenticationService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private BloggerAuthenticationService bloggerAuthenticationService;
+	private AdminAuthenticationService authenticationService;
 	
 	@Bean
 	public MongoRememberMeTokenRepository remembermeTokenRepository(){
@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		auth.authenticationProvider(bloggerAuthenticationService);
+		auth.authenticationProvider(authenticationService);
 	}
 
 	@Override
@@ -46,6 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
 		security.authorizeRequests()
+			.antMatchers("/test/**").permitAll()
 			.antMatchers("/*").authenticated()
 			.anyRequest().permitAll()
 			.and()
@@ -54,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.logout().logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true)
 			.and()
 			.rememberMe().rememberMeParameter("rememberme").tokenValiditySeconds(60*60*24)
-			.userDetailsService(bloggerAuthenticationService)
+			.userDetailsService(authenticationService)
 			.tokenRepository(remembermeTokenRepository())
 			.and()
 			.sessionManagement().maximumSessions(1)

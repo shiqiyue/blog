@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.wuwenyao.blog.algo.BCryptPasswordAlgo;
+import cn.wuwenyao.blog.site.dao.mongo.AdminDao;
 import cn.wuwenyao.blog.site.dao.mongo.BloggerDao;
+import cn.wuwenyao.blog.site.entity.mongo.Admin;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 
 import javax.inject.Inject;
@@ -28,11 +30,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 @Service
-public class BloggerAuthenticationService implements AuthenticationProvider, UserDetailsService {
-	private static final Logger log = LoggerFactory.getLogger(BloggerAuthenticationService.class);
+public class AdminAuthenticationService implements AuthenticationProvider, UserDetailsService {
+	private static final Logger log = LoggerFactory.getLogger(AdminAuthenticationService.class);
 
 	@Autowired
-	private BloggerDao bloggerDao;
+	private AdminDao adminDao;
 
 	@Override
 	public boolean supports(Class<?> c) {
@@ -48,21 +50,21 @@ public class BloggerAuthenticationService implements AuthenticationProvider, Use
 		String username = credentials.getPrincipal().toString();
 		String password = credentials.getCredentials().toString();
 		credentials.eraseCredentials();
-		Blogger blogger = bloggerDao.findByUsername(username);
-		if (blogger == null){
+		Admin admin = adminDao.findByUsername(username);
+		if (admin == null){
 			throw new AuthenticationServiceException("用户名或者密码错误");
 		}
-		if (!BCryptPasswordAlgo.getInstance().checkPassword(password, blogger.getPassword())) {
+		if (!BCryptPasswordAlgo.getInstance().checkPassword(password, admin.getPassword())) {
 			throw new BadCredentialsException("用户名或者密码错误");
 		}
-		blogger.setAuthenticated(true);
-		return blogger;
+		admin.setAuthenticated(true);
+		return admin;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		return bloggerDao.findByUsername(username);
+		return adminDao.findByUsername(username);
 	}
 
 }
