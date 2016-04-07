@@ -1,0 +1,14 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<sitemesh>
+	<!-- 默认装饰器 -->
+	<mapping>
+		<path>/*</path>
+    	<decorator>/WEB-INF/decorator/default.jsp</decorator>
+    	<decorator>/WEB-INF/decorator/nav.jsp</decorator>
+	</mapping>
+	
+	<content-processor>
+		<tag-rule-bundle class="cn.wuwenyao.blog.sitemesh.tag.ruleBundle.JSRuleBundle" />
+	</content-processor>
+</sitemesh>
+
