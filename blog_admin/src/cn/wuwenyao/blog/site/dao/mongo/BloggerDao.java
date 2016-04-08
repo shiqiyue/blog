@@ -10,7 +10,7 @@ import cn.wuwenyao.blog.site.entity.mongo.Blogger;
  * @author 文尧
  *
  */
-public interface BloggerDao extends BaseDao<Blogger, BigInteger>{
+public interface BloggerDao extends BaseDao<Blogger, BigInteger>, MyDao{
 
 	public Blogger findByUsername(String username);
 }

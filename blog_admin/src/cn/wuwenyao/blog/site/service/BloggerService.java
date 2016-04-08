@@ -36,4 +36,8 @@ public class BloggerService {
 	public Page<Blogger> page(Pageable pageable, Map<String,Object> searchMap){
 		return bloggerDao.findAll(searchMap, pageable);
 	}
+	
+	public String a(){
+		return bloggerDao.myDao();
+	}
 }

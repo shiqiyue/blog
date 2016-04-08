@@ -26,7 +26,8 @@ import com.mongodb.MongoClient;
 import cn.wuwenyao.blog.site.dao.mongo.base.BaseDaoImpl;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "${package.mongo.dao}",repositoryBaseClass=BaseDaoImpl.class)
+@EnableMongoRepositories(basePackages = "${package.mongo.dao}",repositoryBaseClass=BaseDaoImpl.class,
+repositoryImplementationPostfix="Impl")
 @EnableMongoAuditing(dateTimeProviderRef = "dateTimeProvider", auditorAwareRef="auditorAware")
 @ComponentScan(basePackages = { "${package.mongo.entity}",
 		"${package.convertor}" }, useDefaultFilters = false, includeFilters = {

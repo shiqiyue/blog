@@ -3,6 +3,7 @@ package cn.wuwenyao.blog.site.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,9 @@ public class TestController {
 	@Autowired
 	private BloggerService bloggerService;
 	
+	@Autowired
+	private MongoTemplate mongoTemplate;
+	
 	@RequestMapping("addAdmin")
 	@ResponseBody
 	public RepBaseDTO addAdmin(){
@@ -45,5 +49,11 @@ public class TestController {
 		return repDTO;
 	}
 	
+	@RequestMapping("mydao")
+	@ResponseBody
+	public String myDao(){
+		System.out.println(bloggerService.a());
+		return bloggerService.a();
+	}
 	
 }
