@@ -43,6 +43,7 @@ public class WebExceptionHandler {
 			modelAndView.addObject("mes", e.getMessage());
 			return modelAndView;
 		}
+		log.error(e.getMessage());
 		modelAndView.setViewName("redirect:/error?info="+e.getMessage());
 		return modelAndView;
 	}

@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 
 import cn.wuwenyao.blog.site.entity.mongo.base.AbstractDocument;
@@ -99,6 +100,7 @@ public class User extends AbstractDocument implements UserDetails, Authenticatio
 		return username;
 	}
 
+	@JsonIgnore
 	@Override
 	public Object getPrincipal() {
 		log.info("auth getPrincipal");

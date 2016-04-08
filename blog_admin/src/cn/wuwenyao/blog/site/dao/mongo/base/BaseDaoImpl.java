@@ -52,6 +52,7 @@ public class BaseDaoImpl<T, ID extends Serializable> extends SimpleMongoReposito
 			q = MongoSeachParse.parse(searchMap, q);
 		}
 		q.with(pageable);
+		System.out.println(q.getQueryObject().toString());
 		List<T> content = mongoOperations.find(q, metadata.getJavaType());
 		return new PageImpl<>(content, pageable, count);
 	}
