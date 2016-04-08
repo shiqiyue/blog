@@ -4,6 +4,11 @@ import java.math.BigInteger;
 
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 
+/***
+ * 
+ * @author 文尧
+ *
+ */
 public class RepBloggerData {
 
 	private BigInteger id;
