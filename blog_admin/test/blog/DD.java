@@ -2,6 +2,10 @@ package blog;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@TypeAlias("cc")
 public class DD {
 
 	private int a;
