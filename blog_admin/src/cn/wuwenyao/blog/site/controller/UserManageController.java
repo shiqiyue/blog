@@ -1,30 +1,27 @@
 package cn.wuwenyao.blog.site.controller;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
 
 @Controller
-@RequestMapping("/")
-public class AdminMainController {
+@RequestMapping("/manage/user")
+public class UserManageController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main() {
-		return "main";
+	public String list() {
+
+		return "manage/user/list";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage() {
-		return "login";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@ResponseBody
-	public RepBaseDTO loginPost() {
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public RepBaseDTO listData(@PageableDefault Pageable page) {
 		RepBaseDTO repDTO = new RepBaseDTO();
+		
 		return repDTO;
 	}
 }

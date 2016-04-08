@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/error")
-public class AdminErrorController {
+public class ErrorController {
 
 	@RequestMapping
 	public String errorPage(){
