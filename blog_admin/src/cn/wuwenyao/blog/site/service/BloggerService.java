@@ -29,4 +29,8 @@ public class BloggerService {
 	public List<Blogger> findAll() {
 		return bloggerDao.findAll();
 	}
+	
+	public String getCollectionName(){
+		return bloggerDao.getCollectionName();
+	}
 }

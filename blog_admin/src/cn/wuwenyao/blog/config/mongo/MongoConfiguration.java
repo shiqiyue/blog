@@ -23,8 +23,10 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
+import cn.wuwenyao.blog.site.dao.mongo.base.BaseDaoImpl;
+
 @Configuration
-@EnableMongoRepositories(basePackages = "${package.mongo.dao}")
+@EnableMongoRepositories(basePackages = "${package.mongo.dao}",repositoryBaseClass=BaseDaoImpl.class)
 @EnableMongoAuditing(dateTimeProviderRef = "dateTimeProvider", auditorAwareRef="auditorAware")
 @ComponentScan(basePackages = { "${package.mongo.entity}",
 		"${package.convertor}" }, useDefaultFilters = false, includeFilters = {

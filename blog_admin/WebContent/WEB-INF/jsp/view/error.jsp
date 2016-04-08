@@ -11,7 +11,7 @@
 <html>
 <head>
 <title>系统错误</title>
-<link href="<c:url value='static/css/main.css'/>" rel="stylesheet">
+<link href="<c:url value='/static/css/main.css'/>" rel="stylesheet">
 <link>
 </head>
 <body>

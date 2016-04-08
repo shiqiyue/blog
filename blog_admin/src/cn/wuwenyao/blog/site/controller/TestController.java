@@ -15,6 +15,7 @@ import cn.wuwenyao.blog.site.entity.mongo.Admin;
 import cn.wuwenyao.blog.site.entity.mongo.Permission;
 import cn.wuwenyao.blog.site.entity.mongo.UserInfo;
 import cn.wuwenyao.blog.site.service.AdminService;
+import cn.wuwenyao.blog.site.service.BloggerService;
 
 @Controller
 @RequestMapping("/test")
@@ -22,6 +23,8 @@ public class TestController {
 
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private BloggerService bloggerService;
 	
 	@RequestMapping("addAdmin")
 	@ResponseBody
@@ -40,5 +43,10 @@ public class TestController {
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加成功");
 		return repDTO;
+	}
+	
+	@RequestMapping("getname")
+	public void getname(){
+		System.out.println(bloggerService.getCollectionName());
 	}
 }
