@@ -45,8 +45,5 @@ public class TestController {
 		return repDTO;
 	}
 	
-	@RequestMapping("getname")
-	public void getname(){
-		System.out.println(bloggerService.getCollectionName());
-	}
+	
 }
