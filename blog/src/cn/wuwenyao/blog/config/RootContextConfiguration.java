@@ -35,10 +35,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import cn.wuwenyao.blog.config.audit.SimpleAuditorAware;
 import cn.wuwenyao.blog.config.audit.SimpleDateTimeProvider;
 import cn.wuwenyao.blog.config.cache.CacheConfiguration;
+import cn.wuwenyao.blog.config.jpa.JPAConfiguration;
 import cn.wuwenyao.blog.config.mongo.MongoConfiguration;
 import cn.wuwenyao.blog.config.property.PropertyConfiguration;
 import cn.wuwenyao.blog.config.redis.RedisConfiguration;
-import cn.wuwenyao.blog.config.security.SecurityConfiguration;
 import cn.wuwenyao.blog.config.session.SessionConfiguration;
 import cn.wuwenyao.blog.site.entity.mongo.User;
 import cn.wuwenyao.blog.util.beanmapper.CustomObjectMapper;
@@ -54,8 +54,8 @@ import cn.wuwenyao.blog.util.beanmapper.CustomObjectMapper;
 @EnableAsync(mode = AdviceMode.PROXY, proxyTargetClass = false, order = Ordered.HIGHEST_PRECEDENCE)
 @ComponentScan(basePackages = "${package.site}", excludeFilters = @ComponentScan.Filter({ Controller.class,
 		ControllerAdvice.class }))
-@Import(value = { /* JPAConfiguration.class, */ MongoConfiguration.class, CacheConfiguration.class,
-		RedisConfiguration.class, SecurityConfiguration.class, SessionConfiguration.class,
+@Import(value = { JPAConfiguration.class, /* MongoConfiguration.class,*/ CacheConfiguration.class,
+		RedisConfiguration.class,  SessionConfiguration.class,
 		PropertyConfiguration.class })
 @PropertySources(value = { @PropertySource("classpath:/application.properties"),
 		@PropertySource("classpath:/db/mongo.properties"), @PropertySource("classpath:/db/redis.properties") })

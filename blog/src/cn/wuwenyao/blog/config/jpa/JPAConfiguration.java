@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.persistence.SharedCacheMode;
 import javax.persistence.ValidationMode;
+import javax.sql.DataSource;
 
 import org.hibernate.cache.redis.SingletonRedisRegionFactory;
 import org.hibernate.cfg.Environment;
@@ -61,7 +62,7 @@ public class JPAConfiguration {
 
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(adapter);
-		factory.setDataSource(applicationContext.getBean(org.apache.tomcat.jdbc.pool.DataSource.class));
+		factory.setDataSource((DataSource) applicationContext.getBean("dataSource"));
 		factory.setPackagesToScan(entityPackage);
 		factory.setSharedCacheMode(SharedCacheMode.ENABLE_SELECTIVE);
 		factory.setValidationMode(ValidationMode.NONE);

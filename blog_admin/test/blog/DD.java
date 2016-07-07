@@ -36,6 +36,12 @@ public class DD {
 	public void setD(Date d) {
 		this.d = d;
 	}
+	@Override
+	public String toString() {
+		String format=  "DD:[a:%s,b:%s,c:%s,d:%s]";
+		return String.format(format, a,b,c,d);
+	}
+	
 	
 	
 }

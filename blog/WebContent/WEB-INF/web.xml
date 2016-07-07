@@ -25,5 +25,9 @@
 		</cookie-config>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
-
+	<resource-ref>
+		<description>MysqlDataSource</description>
+		<res-ref-name>jdbc/mysql</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+	</resource-ref>
 </web-app>

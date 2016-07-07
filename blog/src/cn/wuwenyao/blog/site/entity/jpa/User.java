@@ -6,6 +6,10 @@ import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -25,6 +29,12 @@ import cn.wuwenyao.blog.site.enums.Sex;
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "in_only_test", procedureName = "in_only_test", parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "inParam1", type = Integer.class) }),
+    @NamedStoredProcedureQuery(name = "in_and_out_test", procedureName = "in_and_out_test", parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "inParam1", type = Integer.class),
+            @StoredProcedureParameter(mode = ParameterMode.OUT, name = "outParam1", type = Integer.class) }) })
 @Cacheable(true)
 public class User extends IdEntity{
 

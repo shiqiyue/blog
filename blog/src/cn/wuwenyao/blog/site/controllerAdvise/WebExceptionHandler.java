@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
 import cn.wuwenyao.blog.util.ajax.AjaxUtils;
 
 @ControllerAdvice
@@ -25,7 +24,7 @@ public class WebExceptionHandler {
 		ModelAndView modelAndView = new ModelAndView();
 		if (AjaxUtils.isAjaxRequest(request) || AjaxUtils.isAjaxUploadRequest(request)) {
 			modelAndView.setView(new MappingJackson2JsonView());
-			modelAndView.addObject("code", ResultCode.COMMON_FAIL.ordinal());
+			modelAndView.addObject("code", 0);
 			modelAndView.addObject("mes", e.getMessage());
 			return modelAndView;
 		}
@@ -38,7 +37,7 @@ public class WebExceptionHandler {
 		ModelAndView modelAndView = new ModelAndView();
 		if (AjaxUtils.isAjaxRequest(request) || AjaxUtils.isAjaxUploadRequest(request)) {
 			modelAndView.setView(new MappingJackson2JsonView());
-			modelAndView.addObject("code", ResultCode.COMMON_FAIL.ordinal());
+			modelAndView.addObject("code", 1);
 			modelAndView.addObject("mes", e.getMessage());
 			return modelAndView;
 		}

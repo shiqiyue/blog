@@ -19,27 +19,28 @@
 
 	<context:property-placeholder
 		ignore-unresolvable="true" location="classpath*:/db/jdbc.properties" />
-
+		
+	<jee:jndi-lookup id="dataSource"  jndi-name="jdbc/mysql" />  
 	<!-- 数据源配置, 使用Tomcat JDBC连接池 -->
-	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+	<!-- <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
 		destroy-method="close">
-		<!-- Connection Info -->
+		Connection Info
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 
-		<!-- Connection Pooling Info -->
+		Connection Pooling Info
 		<property name="maxActive" value="${jdbc.pool.maxActive}" />
 		<property name="maxIdle" value="${jdbc.pool.maxIdle}" />
 		<property name="minIdle" value="0" />
 		<property name="defaultAutoCommit" value="false" />
-		<!-- 连接Idle10分钟后超时，每1分钟检查一次 -->
+		连接Idle10分钟后超时，每1分钟检查一次
 		<property name="timeBetweenEvictionRunsMillis" value="60000" />
 		<property name="minEvictableIdleTimeMillis" value="600000" />
 		<property name="testWhileIdle" value="true" />
 		<property name="validationQuery" value="select database()" />
-	</bean>
+	</bean> -->
 
 
 

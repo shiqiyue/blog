@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.common.collect.Lists;
 
 import cn.wuwenyao.blog.algo.BCryptPasswordAlgo;
-import cn.wuwenyao.blog.site.controller.dto.rep.RepBaseDTO;
-import cn.wuwenyao.blog.site.controller.dto.rep.ResultCode;
+
+import cn.wuwenyao.blog.site.dao.jpa.UserDao;
 import cn.wuwenyao.blog.site.entity.mongo.Admin;
 import cn.wuwenyao.blog.site.entity.mongo.Blogger;
 import cn.wuwenyao.blog.site.entity.mongo.Permission;
 import cn.wuwenyao.blog.site.entity.mongo.UserInfo;
-import cn.wuwenyao.blog.site.service.AdminService;
-import cn.wuwenyao.blog.site.service.BlogService;
-import cn.wuwenyao.blog.site.service.BloggerService;
+import cn.wuwenyao.blog.site.service.UserService;
+
 
 @Controller
 @RequestMapping("test")
@@ -29,6 +28,22 @@ public class TestController {
 	private static Logger log = LoggerFactory.getLogger(TestController.class);
 	
 	@Autowired
+	private UserService userService;
+	
+	@RequestMapping("proc1")
+	@ResponseBody
+	public String testProc1(){
+		userService.testProc1();
+		return "succ";
+	}
+	
+	/*@RequestMapping("proc2")
+	@ResponseBody
+	public String testProc2(){
+		return userDao.inAndOutTest(5).toString();
+	}*/
+	
+	/*@Autowired
 	private AdminService adminService;
 
 	@Autowired
@@ -88,6 +103,6 @@ public class TestController {
 		repDTO.setCode(ResultCode.SUCCESS);
 		repDTO.setMes("添加博主成功");
 		return repDTO;
-	}
+	}*/
 
 }

@@ -10,6 +10,10 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.Fields;
+import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
 import org.springframework.data.mongodb.core.mapreduce.MapReduceResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -77,13 +81,20 @@ public class TestMongoTemplate {
 	}
 
 	@Test
+	@Ignore
 	public void testMapReduce() {
-		MapReduceResults<RValue> r = mongoTemplate.mapReduce("dD", "function  (){emit(this.b,this.c);}",
+		MapReduceResults<RValue> r = mongoTemplate.mapReduce("dD",
+				"function  (){emit(this.b,this.a);emit(this.b,this.c);}",
 				"function (key,values){var result = 0;for (var i=0;i<values.length;i++){result+=values[i];}return result;}",
 				RValue.class);
 		for (RValue valueObject : r) {
 			System.out.println(valueObject);
 		}
+	}
+
+	@Test
+	public void testAggregate() {
+
 	}
 
 }
